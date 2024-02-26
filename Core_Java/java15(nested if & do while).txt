@@ -1,0 +1,652 @@
+iv)nested if stmt 
+==================
+If stmt contains another if stmt is called nested if stmt.
+
+syntax:
+	if(condition)
+	{
+		if(condition)
+		{	
+			-
+			- //code to be execute 
+			-
+		}
+	}
+
+
+ex:1
+-----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(true)
+		{
+			System.out.println("stmt2");
+			if(2>1)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt3
+	stmt4
+	stmt5
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(false)
+		{
+			System.out.println("stmt2");
+			if(2>1)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+	stmt1
+	stmt5
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("stmt1");
+		if(true)
+		{
+			System.out.println("stmt2");
+			if(2>10)
+			{
+				System.out.println("stmt3");
+			}
+			System.out.println("stmt4");
+		}
+		System.out.println("stmt5");
+	}
+}
+o/p:
+	stmt1
+	stmt2
+	stmt4
+	stmt5
+
+Q)Write a java program to find out given number is +ve or -ve by using 
+nested if stmt?
+
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n=sc.nextInt();
+
+		if(n!=0)
+		{
+			if(n>0)
+			{
+				System.out.println("It is +ve number");
+				System.exit(0);
+			}
+			System.out.println("It is -ve number");
+		}
+	}
+}
+ 
+
+2)Selection statement
+=======================
+
+Switch case
+============
+It will execute the source code based on multiple conditions.
+
+It is similar to if else if ladder.
+
+syntax:
+-----
+	switch(condition/expression)
+	{
+		case val1: 
+				//code to be execute
+				break stmt;
+		case val2: 
+				//code to be execute
+				break stmt;
+		-
+		-
+		default:
+				//code to be execute if all cases are false.
+	}
+
+ex:
+----
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the option :");
+		int opt=sc.nextInt();
+
+		switch(opt)
+		{
+			case 100: System.out.println("It is police number ");
+					  break;
+			case 103: System.out.println("It is enquiry number");
+					  break;
+			case 108: System.out.println("It is emergency number");
+					  break;
+			default:  System.out.println("Invalid option");
+		}
+
+		
+	}
+}
+
+Declaration of break statement in switch case is optional.
+If we won't defined break statement then from where our condition is satisfied from there all cases will be executed that state is called fall through state of switch case.
+
+ex:
+----
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the option :");
+		int opt=sc.nextInt();
+
+		switch(opt)
+		{
+			case 100: System.out.println("It is police number ");
+					  //break;
+			case 103: System.out.println("It is enquiry number");
+					  //break;
+			case 108: System.out.println("It is emergency number");
+					  //break;
+			default:  System.out.println("Invalid option");
+		}
+
+		
+	}
+}
+
+The allowed datatype of switch case are byte,short,int ,char and String.
+If we take other datatypes then we will get compile time error.
+
+
+ex:
+---
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the String :");
+		String str=sc.next();
+
+		switch(str)
+		{
+			case "one": System.out.println("January"); break;
+			case "two": System.out.println("February"); break;
+			case "three": System.out.println("March"); break;
+			case "four": System.out.println("April"); break;
+			case "five": System.out.println("May"); break;
+			default:  System.out.println("Coming Soon...");
+		}
+
+		
+	}
+}
+
+Q)Write a java program to check given alphabet is a vowel or consonent?
+
+ex:
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the Alphabet :");
+		char ch=sc.next().charAt(0);
+
+		switch(ch)
+		{
+			case 'a': System.out.println("It is a vowel"); break;
+			case 'e': System.out.println("It is a vowel"); break;
+			case 'i': System.out.println("It is a vowel"); break;
+			case 'o': System.out.println("It is a vowel"); break;
+			case 'u': System.out.println("It is a vowel"); break;
+			default:  System.out.println("It is a consonent");
+		}
+
+		
+	}
+}
+
+Assignment
+-----------
+Q)Write a java program to accept six marks of a student then find out total, average and grade?
+
+i) if average is greater then equals to 75 then A grade.
+
+ii)if average is greater then equals to 50 then B grade.
+
+iii)if average is greater then equals to 35 then C grade.
+
+iv) if average is less then 35 then failed.
+
+ex:
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int m1=89,m2=37,m3=49,m4=53,m5=66,m6=72;
+		
+		int total=m1+m2+m3+m4+m5+m6;
+
+		float avg=(float)total/6;
+
+		System.out.println("Total :"+total);
+		System.out.println("Average : "+avg);
+
+		if(avg>=75)
+			System.out.println("Grade : A grade");
+		else if(avg>=50)
+			System.out.println("Grade : B grade");
+		else if(avg>=35)
+			System.out.println("Grade : C grade");
+		else
+			System.out.println("Grade : Failed");	
+	}
+}
+
+3)Iteration statement
+=====================
+Iteration statement is used to execute the code repeatedly.
+
+Iteration statement is possible by using loops.
+
+We have four types of loops.
+
+i) do while loop
+
+ii) while loop
+
+iii) for loop
+
+iv) for each loop 
+
+i) do while loop
+-----------------
+It will execute the source code untill our condition is true.
+
+syntax:
+	do
+	{
+		-
+		- //code to be execute
+		-
+	}while(condition);
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=1;
+		do
+		{
+			System.out.print(i+" "); // infinite 1 
+		}
+		while(i<=10);	
+	}
+}
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=11;
+		do
+		{
+			System.out.print(i+" "); 
+		}
+		while(i<=10);
+		
+	}
+}
+Note:
+-----
+In do while loop our code will execute atleast for one time either our condition is true or false.
+
+
+Q)Write a java program to display 10 natural numbers?
+
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=1;
+		do
+		{
+			System.out.print(i+" ");
+			i++;
+		}
+		while (i<=10);
+		
+	}
+}
+
+Q)Write a java program to display 10 natural numbers in descending order?
+
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=10;
+		do
+		{
+			System.out.print(i+" ");//10 9 8 7 6 5 4 3 2 1 
+			i--;
+		}
+		while (i>=1);
+		
+	}
+}
+
+Q)Write a java program to perform sum of 10 natural numbers?
+
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=1,sum=0;
+		do
+		{
+			sum=sum+i;
+			i++;
+		}
+		while (i<=10);
+		
+		System.out.println("sum of 10 natural numbers is ="+sum);
+	}
+}
+
+Q)Write a java program to find out factorial of a given number?
+
+input:
+	n=5 
+
+output:
+	120 (5*4*3*2*1)
+
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n=sc.nextInt();
+
+		int i=n,fact=1;
+		do
+		{
+			fact=fact*i;
+			i--;
+		}
+		while (i>=1);
+
+		System.out.println("Factorial of a given number is ="+fact);
+	}
+}
+
+Q)Write a java program to display multiplication table of a given number?
+
+ex:
+import java.util.Scanner;
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the number :");
+		int n=sc.nextInt();
+
+		int i=1;
+		do
+		{
+			System.out.println(n+" * "+i+" = "+n*i);
+			i++;
+		}
+		while (i<=10);
+	}
+}
+
+ii) while loop
+================
+It will execute the source code untill our condition is true.
+
+syntax:
+	while(condition)
+	{
+		-
+		- //code to be execute
+		-
+	}
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=1;
+
+		while(i<=10)
+		{
+			System.out.print(i+" "); //infinite 1
+		}
+	}
+}
+
+ex:
+----
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int i=11;
+
+		while(i<=10)
+		{
+			System.out.print(i+" "); //nothing 
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

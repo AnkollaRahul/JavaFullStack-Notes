@@ -1,0 +1,198 @@
+Limitations with Spring Framework
+==================================
+In spring framework a programmer is responsible for following things.
+
+> Adding the depencies or jar files
+
+> Performing the configurations (applicationContext.xml)
+
+> Managing the physical servers like Tomcat and etc.
+
+> Arranging the physical database like Oracle,MySQL and etc.
+
+		Developer
+		    |
+		Spring Boot 		
+		    |
+		Spring Framework 
+
+Spring Boot
+============
+It is an open source java based application framework developed by Pivotal Team.
+
+It provides RAD (Rapid Application Development) features to spring based applications.
+
+It is a production ready grade spring applications with minimum configurations.
+
+In short , spring boot is a combination of 
+
+	Spring Framework  + Embedded database + Embedded server
+
+Spring boot does not support xml configuration instead we will use annotations.
+
+
+Advantages of Spring Boot
+==========================
+It is used to create standalone application which can be started 
+by using java -jar. 
+
+It provide production ready grade features like metrix, healthcheck, externalized configurations and etc.
+
+It provides optionate starters to simplify the Maven configurations.
+
+It does not support xml configurations.
+
+It test the web application by using HTTP servers like Tomcat, Jetty or Undertow.
+
+It provides CLI tool for testing and developing spring boot applications.
+
+
+Interview Questions
+===================
+
+Q) What is Spring Boot?
+
+It is an open source java based application framework developed by pivotal team.It provides RAD features to spring based applications.It is a production ready grade spring applications with miniconfigurations.
+
+
+Q)How many components are there in Spring Boot?
+
+We have four components in spring boot.
+
+1) AutoConfiguration 
+
+2) Starters 
+
+3) CLI tool
+
+4) Actuators 
+
+
+Q)Where we will do configurations in spring boot?
+
+ There are two ways to do configurations in spring boot.
+
+ 1) application.properties (default) 
+
+ 2) application.yml  
+
+
+
+Q)List out some embedded servers present in spring boot?
+
+ We have following list of embedded servers present in spring boot.
+
+ 1) Tomcat 
+
+ 2) Jetty 
+
+ 3) Undertow 
+
+
+
+Q)List out some embedded databases present in spring boot?
+
+ We have following list of embedded databases present in spring boot.
+
+ 1) H2
+
+ 2) HSQL
+
+ 3) Derby
+
+
+Q)In how many ways we can create spring boot application?
+
+ There are two ways to create spring boot applications.
+
+ 1) Using Spring Initializr
+
+ 2) Using STS or IntelliJ IDE.
+
+
+Q)Explain @SpringBootApplication Annotation?
+
+ This annotation is a combination of three annotations.
+
+   1) @EnableAutoConfiguration : 
+	It enables Spring Boot’s auto-configuration mechanism.
+
+   2) @ComponentScan : 
+	It scans on the package where the application is located.
+
+   3) @Configuration : 
+	It allows us to register extra beans in the context.
+
+
+
+
+Spring Initializr
+=================
+It is a web based tool which is used to generate spring boot project structure.
+
+ex:
+	https://start.spring.io/
+
+
+Steps to develop first spring boot application 
+---------------------------------------------
+
+step1:
+-------
+	Goto spring initializr
+	ex:
+		https://start.spring.io/
+
+step2:
+-----
+	Create a spring boot project i.e FirstSB.
+	
+	ex:
+	project      : Maven 
+	Language     : Java
+	Dependencies : (don't add)
+        Spring Boot  : 3.1.1
+     
+ 	Project Metadata
+        Group	    :	com.ihub.www
+	Artifact    :	SBApp1
+	Name        :	SBApp1
+	Description : 	Demostration on Spring Boot
+	Package name:   com.ihub.www
+        packaging   :   jar 
+        Java        :   8   
+	--->  click on Generate button. 
+
+step3:
+-----
+	Download and Install STS IDE.
+
+	STS is a eclipse Based Environment.
+
+	ex:
+		https://spring.io/tools		
+
+step4:
+-----
+	Launch STS IDE by choosing workspace location.
+
+step5:
+------
+	Extract "SBApp1.zip" file in any loctation.
+
+step6:
+------
+	Open "SBApp1" project in STS IDE.
+	ex:
+		File --> Open project from file system --> click to directory button.
+		--> select FirstSB folder --> Finish.
+
+step7:
+-----
+	Add custom message in SApp1Application.java file.
+	
+step8:
+-----
+	Run the spring boot appilication.
+	ex:
+	right click to the project --> run as --> spring boot application.

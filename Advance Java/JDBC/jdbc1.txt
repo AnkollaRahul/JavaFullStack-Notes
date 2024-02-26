@@ -1,0 +1,186 @@
+JDBC
+=====
+As if know it is known as trademark.
+
+But earlier it is called as Java Database Connectivity.
+
+RAM is a temperory storage device or medium.
+
+During the program execution our data will store in RAM.
+
+Once the program execution is completed we will loss the data.
+
+To overcome this limitation we are making our application writing the data into file or database software.
+
+Files and Database softwares act like a permanent storage device or medium.
+
+Persistence 
+===========
+The process of storing and managing the data for a long period of time is called persistence.
+
+
+Important Terminologies
+=======================
+
+1) Persistence Store
+-------------------
+It is a place where we can store and manage the data for a long period of time.
+ex:
+	Database software's 
+	Files  
+ 
+2) Persistence Data 
+-------------------
+Data of a persistence store is called persistence data.
+ex:
+	tables / collections 
+	records 
+	
+
+3) Persistence operation 
+-------------------------
+Insert,update,delete,create and etc are called persistence operation.
+In the realtime this operation is also known as CURD operation, CRUD operation, SCUD operation.
+ex:
+	C - create		S - select   
+	U - update 		C - create 
+	R - read 		U - update 
+	D - delete 		D - delete 
+
+4) Persistence logic 
+--------------------
+A logic which is capable to perform persistence operations is called persistence logic.
+ex:
+	JDBC code 
+	Hibernate code 
+	IOStream 
+	
+
+5) Persistence technology 
+-------------------------
+A technology which is used to develop persistence logic is called persistence technology.
+ex:
+	JDBC
+	Hibernate 
+	JPA 
+	and etc.
+
+Q)What is JDBC?
+
+JDBC is a persistence technology which is used to develop persistence logic having the capability to perform persistence operations on persistence data of a persistence store.
+
+Note:
+-----
+				JDBC Code 
+	JavaApp	-------------------------------------- DB S/W's
+
+
+				IOStream 
+	JavaApp -------------------------------------- Files 	
+		      Serialization/Deserialization 
+
+
+
+Serialization
+==============
+The process of storing object data into a file is called serialization.
+
+In serialization, object will not store in a file instead object data will store in a file.
+
+Diagram: jdbc1.1
+
+In general, Serialization means converting object state to file state.
+
+Deserialization 
+===============
+The process of taking the data from a file and represent an object is called deserialization.
+
+Diagram: jdbc1.2
+
+Limitations with Files as persistence store 
+===========================================
+> It will store limited amount of data.
+
+> There is no security.
+
+> Fetching the data with multiple conditions is not possible.
+
+> It does not show an application with relationship.
+
+> It does not allow us to apply constraints (primary key,unique key,not null).
+
+> Updation and Deletion of data can't be done directly.
+
+> Merging and comparision of data can't be done easily.
+
+
+Advantages of Database software as persistence store 
+=====================================================
+> We can store unlimited amount of data.
+
+> There is a security.
+
+> It supports common query language.
+
+> Fetching the data with multiple conditions is possible.
+
+> It shows an application with relationships.
+
+> It allows us to apply constraints.
+
+> Deletion and Updation of data can be done directly.
+
+> Merging and comparision of data can be done easily.
+
+Every JDBC application is a two-tier application where java with JDBC code acts like a frontend/tier1/layer1 and database software acts like a backend/tier2/layer2.
+
+Enduser is a non-technical person.He can't prepare and execute SQL query in datatabase software.So he depends upon frontend developers having the capability to do that work for him.
+
+Diagram: jdbc1.3 
+
+
+JDBC Driver
+===========
+It acts like a bridge between java application and database software.
+
+It is used to convert Java calls to database calls and vice versa.
+
+Here calls means instructions.
+
+Diagram: jdbc1.4
+ 
+
+ODBC Driver
+===========
+VBScript, Perl, D2k and etc uses ODBC driver to interact with database software.
+
+Diagram: jdbc1.5
+
+ODBC driver is developed by using c language by taking the support of pointers.But Java does not support pointers.To overcome this limitation Sun Micro System introduced JDBC driver exclusively.
+
+We will get JDBC softwares from three parties.
+
+1) Sun Micro System (creator of JDBC driver)
+
+2) Database vendor 
+
+3) Third party vendor 
+
+
+We will get ODBC softwares from three parties.
+
+1) Xopen company (creator of ODBC driver)
+
+2) Database vendor 
+
+3) Third party vendor 
+
+
+
+Q)What is JDBC?
+
+It is a open technology given by Sun Micro System having set of rules and guidelines to develop JDBC drivers for multiple database softwares.
+
+Q)What is ODBC?
+
+ODBC is a open technology given by Xopen company having set of rules and guidelines to develop ODBC drivers for multiple database softwares.

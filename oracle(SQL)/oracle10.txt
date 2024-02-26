@@ -1,0 +1,436 @@
+To see the output in PL/SQL we need to use below command.
+ex:
+	SQL> set   serveroutput  on 
+
+
+Control Statements
+===================
+We have three types of control statements in PL/SQL.
+
+1) IF THEN 
+
+2) IF THEN ELSE 
+
+3) IF THEN ELSIF 
+
+1) IF THEN 
+----------
+It will evalute the code only if our condition is true.
+
+ex:
+----
+	DECLARE 
+	A number:=5;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	IF A>2 THEN
+	DBMS_OUTPUT.PUT_LINE('It is greatest');
+	END IF;
+	
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+	o/p:
+		welcome
+		It is greatest
+		thankyou 
+
+
+ex:
+----
+	DECLARE 
+	A number:=5;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	IF A>20 THEN
+	DBMS_OUTPUT.PUT_LINE('It is greatest');
+	END IF;
+	
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+	o/p:
+		welcome
+		thankyou 
+
+
+2) IF THEN ELSE 
+----------------
+It will evalute the code either our condition is true or false.
+
+ex:
+---
+	DECLARE 
+	A number:=5;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	IF A>0 THEN 
+	DBMS_OUTPUT.PUT_LINE('It is positive');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('It is negative');
+	END IF;
+
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/	
+	o/p:
+		welcome
+		It is positive
+		thankyou
+
+ex:
+---
+	DECLARE 
+	A number:=-5;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	IF A>0 THEN 
+	DBMS_OUTPUT.PUT_LINE('It is positive');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('It is negative');
+	END IF;
+
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+	o/p:
+		welcome 
+		IT is negative
+		thankyou
+
+3) IF THEN ELSIF
+------------------
+It will evalute the code based on multiple conditions.
+
+ex:
+	DECLARE 
+	opt number(3);
+	BEGIN
+	opt:=&opt;
+	
+	IF opt=100 THEN 
+	DBMS_OUTPUT.PUT_LINE('It is police number');
+	ELSIF opt=103 THEN 
+	DBMS_OUTPUT.PUT_LINE('It is enquiry number');
+	ELSIF opt=108 THEN 
+	DBMS_OUTPUT.PUT_LINE('It is emergency number');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('Invalid option');
+	END IF;
+
+	END;
+	/
+
+
+
+
+
+LOOPS
+=====
+We have three types of loops in PL/SQL.
+
+1) Simple Loop 
+
+2) While Loop
+
+3) For Loop 
+
+1) Simple Loop 
+---------------
+It will evalute the code untill our condition is true.
+
+ex:
+	DECLARE 
+	A number:=1;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	LOOP
+	DBMS_OUTPUT.PUT_LINE('Hello');
+	EXIT WHEN A=4;
+	A:=A+1;
+	END LOOP;
+
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+	o/p:
+		welcome	
+		Hello
+		Hello
+		Hello
+		Hello
+		thankyou
+	
+
+Q) Write a PL/SQL program to display 10 natural numbers?
+
+	DECLARE 
+	A number:=1;
+	BEGIN
+	
+	LOOP
+	DBMS_OUTPUT.PUT_LINE(A);
+	EXIT WHEN A=10;
+	A:=A+1;
+	END LOOP;
+
+	END;
+	/
+
+
+2) While Loop
+--------------
+It will evalute the code untill our condition is true.
+
+ex:
+	DECLARE 
+	A number:=1;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	while A<=4 LOOP 
+	DBMS_OUTPUT.PUT_LINE('Hello');
+	A:=A+1;
+	END LOOP;
+
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+
+Q) Write a PL/SQL program to display 10 naturals in descending order?
+
+	DECLARE 
+	A number:=10;
+	BEGIN
+	
+	WHILE A>=1 LOOP
+	DBMS_OUTPUT.PUT_LINE(A);
+	A:=A-1;
+	END LOOP;
+	
+	END;
+	/ 
+	
+
+3) For Loop 
+------------
+It will evalute the code untill our condition is true.
+
+ex:
+	DECLARE
+	A number;
+	BEGIN
+	DBMS_OUTPUT.PUT_LINE('welcome');
+
+	FOR A IN 1 .. 4 LOOP
+	DBMS_OUTPUT.PUT_LINE('Hello');
+	END LOOP;
+
+	DBMS_OUTPUT.PUT_LINE('thankyou');
+	END;
+	/
+	o/p:
+		welcome
+		Hello
+		Hello
+		Hello
+		Hello
+		Thankyou	
+
+
+Q) Write a PL/SQL program to display multiplicate table of a given number?
+
+	DECLARE 
+	I number:=1;
+	N number;
+	BEGIN
+	N:=&n;
+	FOR I IN 1 .. 10 LOOP
+	DBMS_OUTPUT.PUT_LINE(N||' * '||I||' = '||N*I);
+	END LOOP;
+	END;
+	/
+
+
+Exceptions 
+===========
+Runtime errors are called exceptions.
+
+We have two types of exceptions in PL/SQL.
+
+1) Predefined Exceptions 
+
+2) Userdefined Exceptions 
+
+
+1) Predefined Exceptions 
+------------------------
+Built-In exceptions are called predefined exceptions.
+
+We have following list of predefined exceptions.
+
+i) NO_DATA_FOUND Exception 
+
+ii) TOO_MANY_ROWS Exception 
+
+iii) VALUE_ERROR Exception 
+
+iv) ZERO_DIVIDE Exception 
+
+v) DUP_VAL_ON_INDEX Exception 
+
+vi) OTHERS 
+
+i) NO_DATA_FOUND
+-----------------
+This exception will occur when select statement does not return any record.
+
+ex:
+	DECLARE 
+	L_Ename  emp.ename%TYPE; 
+	BEGIN
+	select ename into L_Ename from emp where eid=209;
+	DBMS_OUTPUT.PUT_LINE(L_Ename);
+	EXCEPTION 
+	WHEN NO_DATA_FOUND THEN
+	DBMS_OUTPUT.PUT_LINE('Please check employee id');
+	END;
+	/
+
+ii) TOO_MANY_ROWS
+-----------------
+This exception will raise when select statement returns more then one row.
+
+ex:
+	DECLARE 
+	L_Ename  emp.ename%TYPE; 
+	BEGIN
+	select ename into L_Ename from emp where deptno=10;
+	DBMS_OUTPUT.PUT_LINE(L_Ename);
+	EXCEPTION 
+	WHEN TOO_MANY_ROWS THEN
+	DBMS_OUTPUT.PUT_LINE('select stmt returns more then one row');
+	END;
+	/	
+
+
+iii) VALUE_ERROR 
+-----------------
+This exception will raise when there is a mismatch with datatype or size.
+
+ex:1
+-----
+	DECLARE 
+	A number(3);
+	BEGIN
+	A:=123456;
+	DBMS_OUTPUT.PUT_LINE(A);
+	EXCEPTION 
+	WHEN VALUE_ERROR THEN 
+	DBMS_OUTPUT.PUT_LINE('Please check the size');
+	END;
+	/
+
+ex:2
+----
+	DECLARE 
+	L_Esal emp.esal%TYPE; 
+	BEGIN
+	select ename into L_Esal from emp where eid=201;
+	DBMS_OUTPUT.PUT_LINE(L_Esal);
+	EXCEPTION 
+	WHEN VALUE_ERROR THEN
+	DBMS_OUTPUT.PUT_LINE('Please check the datatype');
+	END;
+	/
+
+iv) ZERO_DIVIDE
+----------------
+This exception will raise when we are trying to divide a number with zero.
+
+ex:
+	DECLARE 
+	A number;
+	BEGIN
+	A:=10/0;
+	DBMS_OUTPUT.PUT_LINE(A);
+	EXCEPTION
+	WHEN ZERO_DIVIDE THEN 
+	DBMS_OUTPUT.PUT_LINE('Dont divide by zero ');
+	END;
+	/
+
+v) DUP_VAL_ON_INDEX
+----------------------
+This exception will raise when are trying to insert duplicate value in a primary key.
+
+ex:
+---
+	alter table student add primary key (sno);
+
+	BEGIN
+	insert into student values(101,'jose','florida');
+	DBMS_OUTPUT.PUT_LINE('Record inserted');
+	EXCEPTION 
+	WHEN DUP_VAL_ON_INDEX THEN 
+	DBMS_OUTPUT.PUT_LINE('Duplicate records not allowed');
+	END;
+	/
+	
+
+vi) OTHERS
+-------------
+It is a universal angular exception which handles all types of exceptions.
+
+ex:
+
+	DECLARE 
+	L_Ename  emp.ename%TYPE; 
+	BEGIN
+	select ename into L_Ename from emp where eid=209;
+	DBMS_OUTPUT.PUT_LINE(L_Ename);
+	EXCEPTION 
+	WHEN OTHERS THEN
+	DBMS_OUTPUT.PUT_LINE('Please check employee id');
+	END;
+	/	
+
+
+2) Userdefined Exceptions 
+--------------------------
+Exceptions are created by the user are called userdefined exceptions.
+
+
+steps to develop user defined exceptions
+----------------------------------------
+step1:
+	Declare the exception 
+
+step2:
+	Raise the exception 
+
+step3:
+	Handle the exception 
+
+ex:
+---
+	DECLARE 
+	A number:=5000; 
+	MY_EX Exception;
+	BEGIN
+
+	IF A>2000 THEN 
+	RAISE MY_EX;
+	END IF;
+	DBMS_OUTPUT.PUT_LINE(A);
+	
+	EXCEPTION
+	WHEN  MY_EX THEN 
+	DBMS_OUTPUT.PUT_LINE('Number is too large');
+	END;
+	/	

@@ -1,0 +1,391 @@
+Q)Write a JDBC application to update student name based on student number?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class UpdateApp {
+
+	public static void main(String[] args)throws Exception  
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the student name :");
+		String name=sc.next();
+		
+		System.out.println("Enter the student no :");
+		int no=sc.nextInt();
+		
+		//converting inputs according to SQL query
+		name="'"+name+"'";
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		
+		Statement st=con.createStatement();
+		
+		String qry="update student set sname="+name+" where sno="+no;
+		
+		int result=st.executeUpdate(qry);
+		
+		if(result==0)
+			System.out.println("No Record updated");
+		else
+			System.out.println(result+" Record updated");
+		
+		st.close();
+		con.close();
+		
+	}
+
+}
+
+Q)Write a jdbc application to delete a student record based on student no?
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class DeleteApp {
+
+	public static void main(String[] args)throws Exception  
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the student no :");
+		int no=sc.nextInt();
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		
+		Statement st=con.createStatement();
+		
+		String qry="delete from student where sno="+no;
+		
+		int result=st.executeUpdate(qry);
+		
+		if(result==0)
+			System.out.println("No Record deleted");
+		else
+			System.out.println(result+" Record deleted");
+		
+		st.close();
+		con.close();
+	}
+
+}
+
+Q)Types of Statement objects in JDBC?
+
+We have three Statement objects in JDBC.
+
+1)Simple Statement
+----------------
+It is an object of underlying supplied java class which implements java.sql.Statement interface.
+
+2)PreparedStatement 
+---------------------
+It is an object of underlying supplied java class which implements java.sql.PreparedStatement interface.
+
+3)CallableStatement 
+-------------------
+It is an object of underlying supplied java class which implements java.sql.CallableStatement interface.
+
+
+
+
+SQL Injection problem
+======================
+Along with input values if we pass special SQL instructions which change behaviour of a query and behaviour of an application is called SQL injection problem.
+
+Here special SQL instruction means comment in SQL i.e (--).
+
+While dealing with simple Statement object there is a chance of raising SQL injection problem.
+
+ex:
+	Username :  raja'--
+	password :  hyd
+	
+	Valid Credentials 
+
+Userlist table
+=================
+drop table userlist;
+
+create table userlist(uname varchar2(10),pwd varchar2(10));
+
+insert into userlist values('raja','rani');
+
+insert into userlist values('king','kingdom');
+
+commit;
+
+
+ex:
+----
+
+package com.ihub.www;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class SQLInjProbApp 
+{
+	public static void main(String[] args)throws Exception  
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the username :");
+		String name=sc.next();
+		
+		System.out.println("Enter the password :");
+		String pass=sc.next();
+		
+		//converting inputs according to SQL query
+		name="'"+name+"'";
+		pass="'"+pass+"'";
+		
+		
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","admin");
+		
+		Statement st=con.createStatement();
+		
+		String qry="select count(*) from userlist where uname="+name+" and pwd="+pass;
+		
+		ResultSet rs=st.executeQuery(qry);
+		
+		int result=0;
+		while(rs.next())
+		{
+			result=rs.getInt(1);
+		}
+		
+		if(result==0)
+			System.out.println("Invalid Credentials");
+		else
+			System.out.println("Valid Credentials");
+		
+		rs.close();
+		st.close();
+		con.close();
+	}
+}
+
+Type1 JDB Driver Architecture/JDBC-ODBC Bridge Driver (Partly java driver)
+==========================================================================
+Type1 JDBC driver is not designed to interact with database software directly.
+
+It is designed to take the support of ODBC drivers and Vendor DB libraries to locate and interact with database software.
+
+Diagram: jdbc4.1
+
+Advantages:
+
+> It is a built-in driver of JDK.
+
+> Using Type1 JDBC driver we can interact with any database software.
+
+Disadvantages:
+
+> This driver performance is low.It is not suitable for medium and large scale 
+  applications.Hence it is not a industry standard driver.
+
+> To work with type1 jdbc driver we need to arrange ODBC driver and vendor 
+  db library.
+
+> Since ODBC driver and vendor db library present at client side so it is not 
+  suitable for untrusted applets to database communication.
+
+
+
+Type2 JDBC Driver Architecture / Native API (partly java driver)
+================================================================
+Type2 JDBC driver is not designed to interact with database software directly.
+
+It is designed to take the support of vendor db library to locate and interact with database softwares.
+
+Diagram: jdbc4.2
+
+Advantages:
+
+> This driver will give better performance when compare to Type1 JDBC driver.
+
+> It will not take the support of ODBC driver.
+
+Disadvantages:
+
+> This driver performance is quit slow.It is not suitable for medium and large
+  scale projects.Hence it is not a industry standard driver.
+
+> To work with Type2 JDBC driver we need to arrange vendor db library   seperately.
+
+> Since vendor db library present at client side so it is not suitable for 
+  untrusted applets to database communication.
+
+> For every database software we need to arrange Type2 jdbc driver seperately.
+
+
+Type4 JDBC driver / Native Protocol (Java driver) / thin driver
+===============================================================
+Type4 JDBC driver is not designed to take the support of ODBC driver and vendor db library.
+
+It is designed to interact with database software directly.
+
+Diagram: jdbc4.3
+
+Advantages: 
+
+> This driver will give better performance when compare to Type 1 & 2 driver.
+
+> It is developed in java so it will give platform independency.
+
+> It will not take the support of odbc driver and vendor db library.
+
+> It is suitable for medium and large scale project.Hence it is a industry 
+  standard driver.
+
+> Since odbc driver and vendor db library not present at client side so it 
+  is suitable for untrusted applets to database communication.
+
+Disadvantages:
+
+> It is a built-in driver of JDK.
+
+> For every database we need to arrange type4 jdbc driver seperately.
+
+
+JDBC Connection pool
+====================
+It is a factory containing set of readily avaiable JDBC Connection objects before actual being used.
+
+Diagram: jdbc4.4
+
+JDBC Connection pool represent connectivity with same database software.
+
+Advantages: 
+
+> It will give resuable JDBC Connection objects.
+
+> With minimum number of Connection objects we can interact with multiple 
+  clients.
+
+> A user is not responsible to create,manage and destroy JDBC connection   objects. A JDBC Connection pool is responsible to create , manage and   destroy jdbc Connection object in JDBC Connection pool.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,366 @@
+Reserved words
+===============
+There are some identifiers which are reserved to associate some funcationality or meaning such type of identifiers are called reserved words.
+
+Java supports 53 reserved words and it is divided into two types.
+
+Diagram: java6.1
+
+Used keywords with respect to class
+-------------------------------------
+package
+import
+interface
+enum
+class
+implements
+extends 
+
+Used keywords with respect to object
+----------------------------------
+new
+instanceof
+this
+super
+
+Used keywords with respect to datatype
+-------------------------------------
+byte
+short
+int
+long
+float
+double
+boolean
+char 
+
+Used keywords with respect to modifiers
+-------------------------------------
+default
+public
+private
+protected
+final
+static
+abstract
+native
+transient
+volatile
+synchronized
+strictfp 
+
+Used keywords with respect to flow control
+---------------------------------------
+if
+else
+switch
+case
+break
+continue
+do
+while
+for
+
+Used keywords with respect to returntype
+----------------------------------
+void 
+
+Used keywords with respect exception handling
+------------------------------------
+try
+catch
+throw
+throws
+finally
+assert 
+
+
+Java
+======
+Version		:	Java 8 
+
+JDK		:	1.8v 
+
+Creator		:	James Gosling 
+
+Vendor		:	Oracle Corporation (Sun Micro System)
+
+Open source	:	Open source
+
+website		:	www.oracle.com/in/java
+
+Tutorials	:	www.javatpoint.com
+			www.javaus.com
+			www.dzone.com 
+			www.w3school.com 
+			and etc.
+
+Download link	:
+
+https://drive.google.com/file/d/16fr2McV_Bex0NYlOdcVfC4k2gwUUNqzq/view?usp=drive_link
+
+
+Steps to setup Java environmental variables
+===========================================
+step1:
+-------
+	Make sure JDK 1.8 version installed successfully.
+
+step2:
+------
+	Copy "lib" directory from java_home folder.
+	ex:
+		C:\Program Files\Java\jdk1.8.0_181\lib
+
+step3:
+------
+	Paste "lib" directory in Environmental variables.
+	ex:
+	Right click to MyPC --> properties --> Advanced system settings
+	Environmental variables --> 
+		
+	User variables --> click to new button -->
+	variable Name : CLASSPATH
+	variable value : C:\Program Files\Java\jdk1.8.0_181\lib;
+
+	System variables --> click to new button -->
+
+	variable Name :  path 
+	variable value : C:\Program Files\Java\jdk1.8.0_181\bin;
+
+	--> ok ---> ok --->ok.
+
+step4:
+------
+	Check the environmental setup done perfectly or not.
+	ex:
+		cmd> javap  
+		cmd> java  -version 
+
+Steps to develop first java application 
+========================================
+step1:
+------
+	Make sure JDK 1.8 installed successfully.
+
+step2:
+-----
+	Make sure Environment setup done perfectly.
+
+step3:
+------
+	Create a "javaprog" folder inside 'E' drive.	
+
+step4:
+------
+	Open the nodepad and develop simple Hello World program.
+	ex:
+		class  Test
+		{
+			public static void main(String[] args)
+			{
+			System.out.println("Hello World");	
+			}	
+		}
+
+step5:
+------
+	Save above java program with same name as class name inside javaprog
+	folder.
+
+step6:
+-----
+	Open the command prompt from javaprog folder or location.
+
+step7:
+-------
+	Compile the java program by using below command.
+	ex:
+		javaprog> javac   Test.java
+					|
+					filename 
+
+step8:
+-----
+	Run the java program by using below command.
+	ex:
+		javaprog>  java    Test
+				   |
+				classname 
+
+Interview Questions
+====================
+
+Q)What is package? 
+
+A package is a collection of classes and interfaces.
+
+
+Q)Which package is a default package in java?
+
+ java.lang package is a default package in java. 
+
+
+Q)What is Program?
+
+  A program is a set of instructions and instruction is a set of tokens.
+
+
+Q)What is application?
+
+  Application is a collection of programs.
+
+
+Q)What is software?
+
+  Software is a collection of applications.	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

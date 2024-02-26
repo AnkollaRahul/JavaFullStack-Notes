@@ -1,0 +1,309 @@
+Life cycle methods of JSP
+==========================
+JSP contains three life cycle methods.
+
+1)_jspInit()
+------------
+	It is used for instantiation event.
+	This method will execute just before JES class object creation.
+	Here JES stands for Java Equivalent Servlet.
+
+2)_jspService()
+---------------
+	It is used for request arrival event.
+	This method will execute when request goes to JSP program.
+
+3)_jspDestroy() 
+---------------
+	It is used for destruction event.
+	This method will execute just before JES class object destruction.
+
+Phases in JSP
+==============
+We have two phases in JSP.
+
+1)Translation phase 
+--------------------
+In translation phase our JSP program converts to JES class.
+
+2)Request Processing phase 
+---------------------------
+In request processing phase our JES class will be executed and result will send 
+to browser window as dynamic response.
+
+Diagram: jsp2.1
+
+
+
+Q)How to enable <load-on-startup> and what happens if we enable <load-on-startup>?
+
+We can enable <load-on-startup> inside web.xml file.
+
+web.xml
+------
+<web-app>	
+	<servlet>
+		<servlet-name>ABC</servlet-name>
+		<jsp-file>/ABC.jsp</jsp-file>	
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ABC</servlet-name>
+		<url-pattern>/test</url-pattern>	
+	</servlet-mapping>
+</web-app>
+
+If we enable <load-on-startup> then translation phase will be perform during 
+server startup or during the deployment of web application.
+
+It means our JES class object will be ready before we give the first request.
+
+JSP Tags/Elements
+==================
+We have following tags in JSP.
+
+1) Scripting Tags 
+
+	i) scriptlet tag 
+		ex:
+			<%  code    %>
+
+	ii) expression tag 
+		ex:
+			<%=  code   %>
+
+	iii) declaration tag 
+		ex:
+			<%!  code   %>	
+
+2) Directive Tags
+
+	i) page directive tag 
+		ex:
+			<%@page  attribute=value %>
+
+	ii) include directive tag 	
+		ex:
+			<%@include  attribute=value %>	
+
+3) Standard Tags 
+	ex:
+		<jsp:include>
+		<jsp:forward>
+		<jsp:useBean>
+		<jsp:setProperty>
+		<jsp:getProperty>
+		and etc.
+
+4) Comments 
+	ex:
+		<%--   comment here   --%>
+
+
+i) scriptlet tag 
+===================
+A scriptlet tag is used to declare java code.
+
+syntax:
+
+	<%  code    %>
+
+Deployment Directory structure
+-------------------------------
+JspApp2
+|
+|---Java Resources
+|
+|---Web Content
+	|
+	|---form.html
+	|---process.jsp
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+-----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+form.html
+----------
+
+<form action="process.jsp">
+	
+	Name: <input type="text" name="t1"/> <br>
+	
+	<input type="submit" value="submit"/>
+	
+</form>
+
+web.xml
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+  <welcome-file-list>
+  	<welcome-file>form.html</welcome-file>
+  </welcome-file-list>
+  
+
+</web-app>
+
+process.jsp
+-------------
+<center>
+	<h1>
+	
+		<%
+		
+			String name=request.getParameter("t1");
+			out.println("Welcome :"+name);
+		%>
+			
+	</h1>
+</center>
+
+request url
+----------	
+	http://localhost:2525/JspApp2/
+
+
+ii) expression tag 
+=====================
+The code which is written in expression will return to the output stream of a response so we don't need to write out.println() to print the data.
+
+syntax:
+
+	<%=  code   %>
+
+Note:
+	Expression tag does not allow semicolon.
+
+	
+Deployment Directory structure
+-------------------------------
+JspApp2
+|
+|---Java Resources
+|
+|---Web Content
+	|
+	|---form.html
+	|---process.jsp
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+-----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+form.html
+----------
+
+<form action="process.jsp">
+	
+	Name: <input type="text" name="t1"/> <br>
+	
+	<input type="submit" value="submit"/>
+	
+</form>
+
+web.xml
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+  <welcome-file-list>
+  	<welcome-file>form.html</welcome-file>
+  </welcome-file-list>
+  
+
+</web-app>
+
+process.jsp
+-------------
+<center>
+	<h1>
+	
+		<%
+		
+			String name=request.getParameter("t1");
+		%>
+		<%= "Hello :"+name %>
+			
+	</h1>
+</center>
+
+request url
+----------	
+	http://localhost:2525/JspApp2/
+
+
+iii) declaration tag 
+======================
+Declaration tag is used to declare fields and methods.
+
+syntax:
+------
+	<%!  code   %>	
+
+Deployment Directory Structure
+------------------------------
+JspApp3
+|
+|---Java Resources
+|
+|---Web Content
+|	|
+	|---index1.jsp
+	|---index2.jsp 
+	|
+	|---WEB-INF
+		|
+		|---web.xml 
+Note:
+----
+In above application we need to add "servlet-api.jar" file in project build path.
+
+index1.jsp
+-----------
+
+<center>
+<h1>
+<%! 
+		int data=100;
+		
+%>
+
+<%=  "The value is ="+data %>
+</h1>
+</center>
+
+index2.jsp
+----------
+
+<center>
+<h1>
+<%! 
+
+		int cube(int n)
+		{
+			return n*n*n;
+		}
+%>
+<%= "Cube of a given number is ="+cube(5) %>
+</h1>
+</center>
+
+web.xml
+---------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  
+</web-app>
+
+request url
+----------
+	http://localhost:2525/JspApp3/index1.jsp
+	http://localhost:2525/JspApp3/index2.jsp

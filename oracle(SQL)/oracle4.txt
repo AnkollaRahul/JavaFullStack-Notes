@@ -1,0 +1,408 @@
+Dual table
+===========
+Dual table is a dummy table which is used to perform arithmetic operations and to see the current system date.
+
+Dual table contains one row and one column.
+
+ex:
+	select 10+20 from dual;
+	select 10*20 from dual;
+	select sysdate from dual;
+	select current_date from dual;
+
+
+2)Scalar Functions
+==================
+Scalar Functions are applicable for single row.
+
+Scalar functions are divided into four types.
+
+i) Character functions 
+
+ii) Number functions 
+
+iii) Date functions 
+
+iv) Conversion functions 
+
+i) Character functions 
+------------------------
+upper()
+-------
+	It will convert lowercase to uppercase.
+	ex:
+		select upper('oracle') from dual;
+		select upper('oracle') as UPPER from dual;
+
+lower()
+-------
+	It will convert uppercase to lowercase.
+	ex:
+		select lower('ORACLE') from dual; 
+
+initcap()
+---------
+	It will convert initial letter to capital.
+	ex:
+		select initcap('this is oracle class') from dual;	
+
+lpad()
+------
+	It will pad the characters at left side.
+	ex:
+		select lpad('oracle',10,'z') from dual; //zzzzoracle 
+
+rpad()
+------
+	It will pad the characters at right side.
+	ex:
+		select rpad('oracle',10,'z') from dual; //oraclezzzz
+
+ltrim()
+---------
+	It will trim the characters from left side.
+	ex:
+		select ltrim('zzoraclezz','z') from dual; // oraclezz
+
+rtrim()
+--------
+	It will trim the characters from right side.
+	ex:
+		select rtrim('zzoraclezz','z') from dual; // zzoracle
+
+trim()
+-------
+	It will trim the characters from both the sides.
+	ex:
+		select trim('z' from 'zzoraclezz') from dual; // oracle 
+
+concat() 
+-------
+	It will concatinate the strings.
+	ex:
+		select concat('mega','star') from dual;
+
+		select concat(concat('mega','star'),'chiru') from dual;
+
+replace()
+--------
+	It will replace the character in a string.
+	ex:
+		select replace(esal,0,9) from emp;
+
+ii) Number functions
+---------------------
+
+abs()
+-------
+	It will return absoluate value.
+	ex:
+		select abs(-10) from dual; //10
+		select abs(10) from dual; //10
+
+power(A,B)
+------------
+	It will return power value.
+	ex:
+		select power(5,3) from dual;
+
+sqrt()
+------
+	It will return exact square root value.
+	ex:
+		select sqrt(25) from dual; //5
+
+		select sqrt(26) from dual; //5.09
+
+ceil()
+-----
+	It will return ceil value.
+	ex:
+		select ceil(10.2) from dual; // 11
+
+		select ceil(56.7) from dual; // 57
+
+floor()
+------
+	It will return floor value.
+	ex:
+		select floor(10.2) from dual; //10
+		
+		select floor(10.9) from dual; //10
+
+round()
+------
+	It will return nearest value.
+	ex:
+		select round(10.4) from dual; // 10
+
+		select round(10.5) from dual; //11
+
+trunc()
+--------
+	It will return decimal values.
+	ex:
+		select trunc(10.56) from dual; //10
+
+		select trunc(56.78) from dual; // 56
+
+greatest()
+---------
+	It will return greatest value.
+	ex:
+		select greatest(101,102,103) from dual; 
+
+least() 
+------
+	It will return least value.
+	ex:
+		select least(101,102,103) from dual;//101
+
+
+Working with Date values
+=========================
+All database softwares support date values.
+
+It is not recommanded to store date values in the form of varchar2.
+
+Every database supports different date patterns.
+
+ex:
+	oracle 	--	dd-MMM-yy
+	
+	MySQL	--	yyyy-MM-dd	
+
+emp1 table
+============
+drop table emp1;
+
+create table emp1(eid number(3),ename varchar2(10),edoj date);
+
+insert into emp1 values(101,'Alan','01-JAN-24');
+
+insert into emp1 values(102,'Jose','15-NOV-23');
+
+insert into emp1 values(103,'Nelson',sysdate);
+
+commit;
+
+
+iii) Date functions
+-----------------
+We have following list of date functions.
+
+ADD_MONTHS()
+--------------
+	It will add the months in a given date.
+	ex:
+		select ADD_MONTHS(sysdate,6) from dual;
+
+MONTHS_BETWEEN()
+----------------
+	It will return number of months between two given dates.
+	ex:
+		select MONTHS_BETWEEN('01-JAN-23','11-JAN-24') from dual; //-12.3
+
+		select ABS(MONTHS_BETWEEN('01-JAN-23','11-JAN-24')) from dual; //12.3
+
+NEXT_DAY()
+------------
+	It will return next date of a given day in a week.
+	ex:
+		select NEXT_DAY(sysdate,'SUNDAY') from dual;
+
+		select NEXT_DAY(sysdate,'THURSDAY') from dual;
+
+LAST_DAY()
+---------
+	It will return last date of a month.
+	ex:
+		select LAST_DAY(sysdate) from dual;
+		
+		select LAST_DAY('15-FEB-24') from dual;
+
+iv) Conversion functions
+----------------------
+It is used to convert from one type to another type.
+
+ex:
+	TO_CHAR() 
+
+We have two pseudo for TO_CHAR().
+
+number to_char()
+-----------------
+It will accept '9' in digits , dollar and euro symbols.
+ex:	
+	select  eid,ename,TO_CHAR(esal,'9,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'99,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'$99,999') from emp;
+
+	select  eid,ename,TO_CHAR(esal,'$99,999') as ESAL from emp;
+		
+
+date  to_char()
+----------------
+	select  TO_CHAR(sysdate,'dd-MM-yyyy') from dual;
+
+	select  eid,ename,TO_CHAR(sysdate,'dd-MM-yyyy') as DOJ from emp1;
+
+	select  TO_CHAR(sysdate,'month') from dual;
+
+	select  TO_CHAR(sysdate,'mon') from dual;
+
+	select  TO_CHAR(sysdate,'year') from dual;
+
+	select  TO_CHAR(sysdate,'yyyy') from dual;
+
+	select  TO_CHAR(sysdate,'mm') from dual;
+
+	select  TO_CHAR(sysdate,'dd') from dual;
+
+	select  TO_CHAR(sysdate,'day') from dual;	
+
+	select  TO_CHAR(sysdate,'dy') from dual;
+
+	select  TO_CHAR(sysdate,'HH:MI:SS') from dual;
+
+	select  TO_CHAR(sysdate,'yyyy-MM-dd  HH:MI:SS') from dual;
+
+
+Group by clause
+===============
+Group by clause is used to divide the rows into groups so that we can apply group functions.
+		
+A column which we used in select clause then same column must use in group by clause.
+
+
+Q) Write a query to display sum of salary of each department?
+
+	select sum(esal),deptno from emp group by deptno;
+	
+
+Q) Write a query to display average salary of each job?
+
+	select avg(esal),job from emp group by job;
+	
+
+Q) Write a query to display highest salary of each department?
+
+	select max(esal),deptno from emp group by deptno;
+
+
+Q) Write a query to display lowest salary of each job?
+
+	select min(esal),job from emp group by job;
+
+Having clause
+=============
+Having clause is used to filter the rows from group by clause.
+
+Having clause must used after group by clause.
+
+Q)Write a query to display sum of salary of each department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp group by deptno having sum(esal)>30000;
+
+
+Q) Write a query to display average salary of each job where average salary is less then 40000?
+
+	select avg(esal),job from emp group by job having avg(esal)<40000;
+
+Order by clause
+===============
+It is used to arrange the rows in a table.
+
+By default it will arrange in ascending order.
+
+ex:
+	select * from emp order by eid;
+
+	select * from emp order by eid desc;
+
+	select * from emp order by ename;
+
+	select * from emp order by esal;
+
+
+Q)Write a query to display sum of salary of each department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp group by deptno 
+	having sum(esal)>30000
+	order by deptno;
+
+
+Q)Write a query to display sum of salary of each department except 20 department whose salary is greater then 30000?
+
+	select sum(esal),deptno from emp where deptno<>20 group by deptno 
+	having sum(esal)>30000
+	order by deptno;
+
+
+Intigrity Constraints
+======================
+Constraints are the rules which are applied on the tables.
+
+We have following list of constraints.
+
+1) NOT NULL
+
+2) UNIQUE 
+
+3) PRIMARY KEY 
+
+4) FOREIGN KEY 
+
+5) CHECK 
+
+Every constraint can be created two levels.
+
+i) Column level 
+
+ii) Table level 
+
+1) NOT NULL
+-----------
+NOT NULL constraint does not accept null values.
+
+It will accept duplicate values.
+
+NOT NULL constraint can be created at column level.
+
+column level
+---------
+drop table student;
+
+create table student(sno number(3) NOT NULL,sname varchar2(10),sadd varchar2(12));
+
+insert into student values(101,'raja','hyd');
+
+insert into student values(101,'ravi','delhi');
+
+insert into student values(null,'ramana','vizag'); //invalid 
+
+commit;
+
+Note:
+-----
+NOT NULL constraint can be created for multiple columns.
+
+ex:
+
+drop table student;
+
+create table student(sno number(3) NOT NULL,
+				sname varchar2(10) NOT NULL,
+					sadd varchar2(12) NOT NULL);
+
+insert into student values(101,'raja','hyd');
+
+insert into student values(null,'ravi','delhi'); //invalid
+
+insert into student values(102,null,'vizag'); //invalid 
+
+insert into student values(102,'ramana',null); //invalid 
+
+commit;

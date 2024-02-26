@@ -1,0 +1,243 @@
+Main method
+============
+Our program contains main method or not.
+
+Either it is properly declared or not. 
+
+It is not a responsibility of a compiler to check. 
+
+It is a liability of a JVM to look for main method always at runtime.
+
+JVM always look for main method with following signature.
+
+syntax:
+
+	public static void main(String[] args)
+	
+If we perform any changes in above signature then JVM will throw one runtime error called main method not found.
+
+public
+------
+	JVM wants to call main method from anywhere.
+static
+-------
+	JVM wants to call main method without using object reference.
+void 
+------
+	Main method does not return anything to JVM.
+main 
+----
+	It is a identifier given to a main method.
+
+String[] args
+------------
+	It is a command line argument.
+
+We can perform following changes in main method.
+
+1)Order of modifiers is not important , incase of public static we can declare   static public also.
+  ex:
+	static public void main(String[] args)
+
+2) We change String[] in following acceptable formats.
+   ex:
+	public static void main(String[]  args)
+	public static void main(String  []args)	
+	public static void main(String  args[])	
+
+3) We can replace String[] with var-arg parameter.
+   ex:
+	public static void main(String...  args)
+
+4) We can change args with any java valid identifier.
+   ex:
+	public static void main(String[] ihub)		
+
+5) Main method will accept following modifiers.
+   ex:
+	synchronized
+	strictfp
+	final 
+
+Command Line arguments
+=======================
+Arguments which are passing through command prompt such type of arguments are called command line arguments.
+
+In command line arguments we need to pass out input values always at runtime.
+
+ex:
+	javac   Test.java 
+
+	java    Test  101  raja  M  1000.0
+ 			|   |	 |	|____args[3]			
+			|   |	 |___________args[2]
+			|   |________________args[1] 
+			|____________________args[0]
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(args[0]);
+		System.out.println(args[1]);
+		System.out.println(args[2]);
+		System.out.println(args[3]);
+	}	
+}
+
+System.out.println()
+======================
+It is a output statement in java.
+
+Whenever we want to display any data or userdefined statements then we need to use output statement.
+
+syntax:
+-------
+		static variable 
+		|
+	System.out.println(" ");
+	 |		|	
+	predefined 	predefined method 
+	final class 
+
+Diagram: java9.1
+
+Various ways to display the data
+--------------------------------
+1)
+	System.out.println("Hello World");
+
+
+2)
+	int i=10;
+	System.out.println(i);
+	System.out.println("The value is ="+i);	
+
+3)
+	int i=10,j=20;
+	System.out.println(i+" "+j);
+	System.out.println(i+" and "+j);
+
+4)
+	int i=1,j=2,k=3;
+	System.out.println(i+" "+j+" "+k);
+
+Q)What is the difference b/w System.out.println() and System.err.println()?
+
+System.out.println()
+--------------------
+It is used to display the output only one console.
+ex:
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Hello World");
+	}	
+}
+
+System.err.println()
+--------------------
+It is used to display the output on console as well it will redirect to some physical file.
+ex:
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.err.println("Hello World");
+	}	
+}
+o/p:
+	javac   Test.java
+	java    Test 2>abc.txt 
+
+
+Fully Qualified Name
+=====================
+Fully qualified name means we will declare our class or interface along with package name.
+
+It is used to improve the readability of our code.
+
+ex:
+---
+class Test
+{
+	public static void main(String[] args)
+	{
+		java.util.Date d=new java.util.Date();
+		System.out.println(d);
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

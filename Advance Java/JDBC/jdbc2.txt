@@ -1,0 +1,155 @@
+Oracle 
+======
+Version		:	10g or 11g
+
+Vendor		:	Oracle corporation 
+
+Opensource	:	open source 
+
+Port No		:	1521
+
+Username	:	system (default)
+
+Password	:	admin 
+
+Website		:	https://www.oracle.com/in/database/
+
+Download link	:
+
+https://drive.google.com/file/d/0B9rC21sL6v0td1NDZXpkUy1oMm8/view?usp=drive_link&resourcekey=0-aKooR3NmAh_eLo_qGw_inA
+
+To use any JDBC driver we need to register with DriverManager service.
+
+Every JDBC application contains one built-in service called DriverManager service.
+
+
+Class.forName()
+================
+It always recommanded to use Class.forName() method to register JDBC driver with DriverManager service.
+
+It is used to load the driver class but it won't create an object.
+
+ex:
+	Class.forName("driver-class-name");
+
+Connection object
+==================
+A Connection is an interface which is present in java.sql package.
+
+It is an object of underlying supplied java class which implements java.sql.Connection interface.
+
+If we want to interact with database we need to establish the connection with database software.
+
+Once the work with database is completed, we need to close the Connection object.
+
+ex:
+	Connection con;
+
+
+DriverManager.getConnection()
+=============================
+A DriverManager is a class which is present in java.sql package.
+
+A getConnection() static method is used to interact with database software and returns JDBC Connection object representing connectivity between java application and database software.
+
+ex:
+	Connection con=DriverManager.getConnection("driver-url",username,pwd);
+
+
+Statement object
+=================
+A Statement is an interface which is present in java.sql package.
+
+It acts like a vehicle between java application and database software.
+
+It is used to sends and executes SQL query in database software.
+
+We can create Statement object as follow.
+
+ex:
+	Statement st=con.createStatement();
+
+ResultSet object
+=================
+A ResultSet is an interface which is present in java.sql package.
+
+Every ResultSet contains two positions.
+
+1) BFR (Before First Record/Row)
+
+2) ALR (After Last Record/Row)
+
+Bydefault record pointer points to BFR position.
+
+Every record ResultSet having 1 as base index and every record ResultSet having 1 as column index.
+
+rs.next()
+=========
+It will move record pointer to next position from current position.
+
+If next position is a record then it will return true.
+
+If next position is ALR then it will return false.
+
+To read the values from record ResultSet we need to use getXxx() method with index number or column name.
+
+Here getXxx() method means getInt(),getFloat(),getDouble() and etc.
+
+Diagram: jdbc2.1
+
+
+student table
+=============
+drop table student;
+
+create table student(sno number(3),sname varchar2(10),sadd varchar2(12));
+
+insert into student values(101,'raja','hyd');
+insert into student values(102,'ravi','delhi');
+insert into student values(103,'ramana','vizag');
+
+commit;
+
+select * from student;
+
+
+Q)Difference between Oracle and MongoDB?
+
+Oracle 					MongoDB
+-------					--------
+It is a RDBMS database.			MongoDB is a document base database. 
+
+table					Collection
+
+row					document 
+
+column					field
+
+Types of Queries in JDBC
+============================
+According JDBC point of view we have two types of queries.
+
+1)Select Query 
+
+2)Non-Select Query 
+
+1)Select Query 
+--------------
+A select query will give bunch of records from database.
+ex:
+	select * from student;
+
+A JDBC Statement object gave executeQuery() method to execute select query.
+ex:
+	ResultSet rs=st.executeQuery("select * from student");
+
+
+2)Non-Select Query
+-----------------
+A non-select query will return numeric value represent number of records effected in a database table.
+ex:
+	delete from student;
+
+A JDBC Statement object gave executeUpdate() method to execute non-select query.
+ex:
+	int result=st.executeQuery("delete from student");

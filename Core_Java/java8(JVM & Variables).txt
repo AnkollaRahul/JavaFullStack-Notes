@@ -1,0 +1,493 @@
+Internal Architecture of JVM
+=============================
+Diagram: java8.1
+
+Our java application contains java code instructions.Once if we compile ,java code instructions convert to byte code instructions in .class file.
+
+JVM will invoke a module called classloader or subsystem to load all the byte code instructions from .class file. The work of classloader is to check byte code instructions are proper or not.If it is not proper then it will refuse the execution.If it is proper then it will allocate the memories.
+
+We have five types of memories.
+
+1)Method Area
+-------------
+Method area contains code of a variable, code of a method and code of a class.
+
+2)Heap
+-------
+Our object creation will store in heap area.
+
+Note:
+------
+Whenever JVM loads byte code instructions from .class file it will create method area and heap area automatically.
+
+3)Java Stack
+-----------
+Java methods will store in method area but to execute those methods we required some memory.That memory will be allocated in java stack.
+
+4)PC register 
+-------------
+It is a program counter register which is used to track the address of an instructions.
+
+5)Native Method Stack 
+----------------------
+Java methods will execute in method area.Similary native methods will execute in native method stack.
+
+But we can't execute native methods directly we required a program called Native method interface.
+
+Execution Engine
+-----------------
+Execution engine contains interpreter and JIT compiler.
+
+Whenever JVM loads byte code instructions from .class file it will use interpreter and JIT compiler simultenously.
+
+Interpreter is used to execute our program line by line procedure.
+
+JIT compiler is used to increase the execution speed of our program.
+
+
+Interview Questions
+==================
+Q)A .class file contains what code ?
+
+  Byte code 
+
+
+Q)How many memories are there in java?
+
+  There are five memories in java.
+  1) Method area
+  2) Heap 
+  3) Java Stack 
+  4) PC register 
+  5) Native method stack
+
+
+Q)What is JIT compiler ?
+
+  It is a part of a JVM which is used to increase the execution speed of our 
+  program. 	  
+
+
+Q)How many classloaders are there in java?
+
+  We have three predefined classloaders in java.
+
+  1)Bootstrap classloader  (It loads rt.jar file)
+
+  2)Extension classloader  (It loads all the jar file from ext folder)
+
+  3)Application/System classloader (It loads .class file from CLASSPATH)
+
+
+Types of variables
+===================
+A name which is given to a memory location is called variable.
+
+Purpose of variable is used to store the data.
+
+In java, We have two types of variables.
+
+1)Primitive variables 
+--------------------
+	It is used to represent primitive values.
+
+2)Reference variables 
+--------------------
+	It is used to represent object reference.
+	ex:
+		Student s=new Student();
+			|
+		  reference 
+		  variable 
+
+Based on the position and execution these variables are divided into three types.
+
+1)Instance variables / Non-static variables 
+
+2)Static variables / Global variables 
+
+3)Local variables / Temperory variables / Automatic variables 
+
+1)Instance variables
+---------------------
+A value of a variable which is varied(changes) from object to object is called instance variable.
+
+Instance variable will be created at the time of object creation and it will destroy at the time of object destruction.Hence scope of instance variable is same as scope of an object.
+
+Instance variable store in Heap area as a part of an object.
+
+Instance variable must and should declare immediately after the class but not inside methods, blocks and constructors.
+
+Instance variable we can access directly from instance area but we can't access directly from static area.
+
+To access instance variable from static area we need to create object reference.
+
+ex:1
+----
+class  Test
+{
+	//instance variable
+	int  i = 10;
+
+	public static void main(String[] args)
+	{
+		System.out.println(i);//C.T.E 		 
+	}
+}
+
+ex:2
+----
+class  Test
+{
+	//instance variable
+	int  i = 10;
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.i);//10		 
+	}
+}
+
+Note:
+-----
+If we won't initialize any value to instance variable then JVM will initialized default values.
+
+ex:3
+-----
+class  Test
+{
+	//instance variable
+	boolean b;	
+
+	public static void main(String[] args)
+	{
+		Test t=new Test();
+		System.out.println(t.b);//false 			 
+	}
+}
+
+ex:4
+-----
+class  Test
+{	
+	public static void main(String[] args)
+	{
+		//calling 
+		Test t=new Test();
+		t.m1();	 
+	}
+	//non-static method
+	public void m1()
+	{
+		System.out.println("instance-method");
+	}
+	
+}
+
+2)Static variables
+------------------
+A value of a variable which is not varied from object to object is called static variable.
+
+A static variable will be created at the time of class loading and it will destroy at the time of class unloading .Hence scope of static variable is same as scope of .class file.
+
+Static variable will store in method area.
+
+Static variable must and should declare immediately after the class by using static keyword but not inside methdods,blocks and constructors.
+
+Static variable can access directly from instance area and static area.
+
+Static varible can access by using object reference and classname.
+
+ex:1
+-----
+class  Test
+{	
+	//static variable
+	static int i=10;	
+
+	public static void main(String[] args)
+	{
+		System.out.println(i);//10
+
+		Test t=new Test();
+		System.out.println(t.i); //10
+
+		System.out.println(Test.i);//10		 
+	}
+	
+}
+Note:
+-------
+If we won't initialize any value  to static variable then JVM will initialized default values.
+
+ex:2
+-----
+class  Test
+{	
+	//static variable
+	static String s;
+
+	public static void main(String[] args)
+	{
+		System.out.println(s);//null
+	}
+	
+}
+
+ex:3
+-----
+class  Test
+{	
+	public static void main(String[] args)
+	{
+		//calling 
+		m1();
+
+		Test t=new Test();
+		t.m1();
+
+		Test.m1();	
+	}
+	//static method
+	public static void m1()
+	{
+		System.out.println("static-method");
+	}		
+}
+
+3)Local variables
+------------------
+To meet temperory requirement, programmers will declare some variables inside methods , blocks and constructors such type of variables are called local variables.
+
+A local variable will be created at the time of execution block and it will destroy when execution block is executed.Hence scope of local variable is same as scope of execution block where it is declared.
+
+Local variable will store in java stack memory.
+
+ex:
+----
+class  Test
+{	
+	public static void main(String[] args)
+	{
+		//local variable
+		int i=10;
+		System.out.println(i);//10
+	}
+			
+}
+Note:
+-----
+IF we won't initialize any value to local variable then JVM will not initialized any default value.
+
+ex:2
+-----
+class  Test
+{	
+	public static void main(String[] args)
+	{
+		//local variable
+		int i;
+		System.out.println(i);//C.T.E 
+	}
+			
+}
+o/p:
+	variable i might not have been initialized
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

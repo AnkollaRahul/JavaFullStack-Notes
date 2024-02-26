@@ -1,0 +1,170 @@
+Spring Security
+=============
+Spring Security is a framework which provides various security features like  authentication, 
+authorization to create secure Java Enterprise Applications.
+
+It is a sub-project of Spring framework which was started in 2003 by Ben Alex.
+
+Later on, in 2004, It was released under the Apache License as Spring Security 2.0.0.
+
+This framework targets two major areas of application
+
+1)Authentication 
+---------------------
+It is a process of knowing and identifying the user that wants to access.
+
+2)Authorization 
+---------------------
+It is a process to allow authority to perform actions in the application.
+
+Project structure
+--------------------------
+SpringSecurityApp
+|
+|----src/main/java
+|	|
+|	|----com.ge.www
+|		|
+|		|--SpringSecurityAppApplication.java
+|	|
+|	|----com.ge.www.controlller
+|		|
+|		|--HomeController.java
+|		
+|---src/main/resources
+|	|
+|	|-----application.yml
+|
+|---src/test/java
+|	|
+|	|-----SBSpringSecurityApplicationTests.java
+
+|---pom.xml
+|
+|
+
+step1:
+---------
+	create a spring starter project.
+	starters: spring web
+		  spring security.
+
+step2:
+----------
+	create a Controller to accept the request.
+	
+HomeController.java
+--------------------------
+package com.ge.www.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HomeController {
+
+	@GetMapping("/msg")
+	public String msg()
+	{
+		return "Welcome to Spring Security";
+	}
+}
+
+step3:
+--------
+	Configure server port number in application.properties file.
+application.yml
+-----------------------------
+server:
+  port: 9191
+
+
+step4:
+----------
+	Run the application as spring boot application.
+
+step6:
+----------
+	Test the application by using below url.
+	ex:
+	http://localhost:9191/msg
+
+Note:
+--------
+	When we hit the request ,we will get login page.
+	Default username is "user" and password we can copy from STS console.
+
+step7:
+--------
+	To change the default user and password we can use below properties in 
+	application.properties file.
+
+application.yml
+-----------------------------
+server:
+  port: 9191
+
+spring
+  security:
+    user:
+      name=raja
+      password=rani
+
+step8:
+----------	
+	Relaunch the spring boot application.
+
+step9:
+----------
+	Test the application by using below url.
+	ex:
+	http://localhost:9191/msg
+
+
+
+How can we convert spring project to jar file
+=============================================
+step1:
+------
+	Make sure spring boot project is ready.
+
+step2:
+-----
+	Create a jar file for spring boot project.
+	ex:
+		right click to project --> run as --> Maven build --> 
+		Goals: package  --> run. 
+
+step3:
+-----
+	Check the jar file inside target folder of a spring boot project.
+
+
+
+
+
+
+
+Q)What is the difference between  WaterFall Model vs Agile Methodology?
+
+Agile 					WaterFall Model
+----------				----------------
+It processes non-linear,incremental and	It processes linear and sequential approach 
+interactive approach for a software 	for a software design.
+design.
+
+At each incremental approach project 	At the end whole project is tested.
+is tested.
+
+A customer has early and frequent 	A customer only can see that product at the 
+opportunities to look at the product	end of the project.
+and make decisions or changes to the 
+project.
+
+It is unstructured because it is not	It is structured because it is plan oriented.
+plan oriented.
+
+Small projects can be implemented 	All sort of projects can be estimated an	
+quickly.But large projects can't be	implemented. 
+estimated and implemented due to 
+frequent changes.

@@ -1,0 +1,547 @@
+Diagram: java29.1
+
+
+Interning of String object
+==========================
+With the help of heap object reference if we want corresponding SCP object reference then we need to use intern() method.
+
+Diagram: java29.2
+
+String important methods
+=========================
+
+Q)Write a java program to accept one string and dispaly it?
+
+ex:
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter the string :");
+		String str=sc.next();
+
+		System.out.println(str);
+	}
+}
+
+approach2
+----------
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter the string :");
+		String str=sc.nextLine();
+
+		System.out.println(str);
+	}
+}
+
+Q)Write a java program to remove all special characters from given string?
+
+input:
+	Ihub@Talent_M$angeme#nt515;
+
+output:
+	IhubTalentManageent515
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="Ihub@Talent_M$angeme#nt515";
+
+		str=str.replaceAll("[^A-Za-z0-9]","");
+
+		System.out.println(str);
+	}
+}
+
+Q)Write a java program to find out length of the string?
+
+input:
+	hello
+
+output:
+	5 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="hello";
+		
+		System.out.println(str.length());//5
+	}
+}
+
+Q)Write a java program to convert uppercase letter to lowercase letter?
+
+input:
+	IHUBTALENT 
+
+output:
+	ihubtalent 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="IHUBTALENT";
+		
+		str=str.toLowerCase();
+
+		System.out.println(str);//ihubtalent
+	}
+}
+
+Q)Write a java program to convert lowercase letter to uppercase letter?
+
+input:
+	ihubtalent
+
+output:
+	IHUBTALENT 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="ihubtalent";
+		
+		str=str.toUpperCase();
+
+		System.out.println(str);//IHUBTALENT 
+	}
+}
+
+Q)Write a java program to find out given the strings are equal or not?
+
+input:
+	str1 = "ihub";
+	str2 = "ihub";
+
+output:
+	Both are equals 
+
+ex:
+---
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str1="ihub";
+		String str2="ihub";
+		
+		if(str1.equals(str2))
+			System.out.println("Both are equals");
+		else
+			System.out.println("Both are not equal");
+	}
+}
+
+ex:
+----
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str1="ihub";
+		String str2="IHUB";
+		
+		if(str1.equalsIgnoreCase(str2))
+			System.out.println("Both are equals");
+		else
+			System.out.println("Both are not equal");
+	}
+}
+
+Q)Write a java program to check given word present in a string or not?
+
+input:
+	str = "Welcome to ihub talent management"
+
+	word = "ihub"
+
+output:
+	It is available 
+
+ex:
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="Welcome to ihub talent management";
+		
+		String word="ihub";
+
+		if(str.contains(word))
+			System.out.println("It is available");
+		else
+			System.out.println("It is not available");
+	}
+}
+
+Q)Write a java program to display the character from string which is present in given index?
+
+input:
+	str = "ihubtalent"	
+	index = 5
+output:
+	a 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="ihubtalent";
+		
+		int index =5;
+
+		System.out.println(str.charAt(index));//a 
+	}
+}
+
+Q)Write a java program to find out index of first occurance character in a given string?
+
+input:
+	str = "ihubtalentmanagement"
+	
+	ch='a';
+
+output:
+	5 	
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = "ihubtalentmanagement";
+	
+		char ch='a';
+
+		System.out.println(str.indexOf(ch));
+	}
+}
+
+Q)Write a java program to find out index of last occurance character in a given string?
+
+input:
+	str = "ihubtalentmanagement"
+	
+	ch='a';
+
+output:
+	13
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = "ihubtalentmanagement";
+	
+		char ch='a';
+
+		System.out.println(str.lastIndexOf(ch));
+	}
+}
+
+
+Q)Write a java program to find out number of occurance of a given character?
+
+input:
+	str = "ihubtalentmanagement"
+
+	char ch='a';
+
+output:
+	3 times 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str = "ihubtalentmanagement";
+	
+		char ch='a';
+
+		int cnt=0;
+		for(int i=0;i<str.length();i++)
+		{
+			char alphabet=str.charAt(i);
+
+			if(alphabet==ch)
+			{
+				cnt++;
+			}
+		}
+
+		System.out.println(cnt+" times");
+	}
+}
+
+Q)Write a java program to display the string in reverse order?
+
+input:
+	hello
+
+output:
+	olleh 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="hello";
+
+		char[] carr=str.toCharArray();
+
+		String rev="";
+		for(int i=carr.length-1;i>=0;i--)
+		{
+			rev+=carr[i];
+		}
+		System.out.println(rev);//olleh
+	}
+}
+
+Q)Write a java program to check given string is palindrome or not?
+
+input:
+	madam
+
+output:
+	It is palindrome string 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="madam";
+
+		char[] carr=str.toCharArray();
+
+		String rev="";
+		for(int i=carr.length-1;i>=0;i--)
+		{
+			rev+=carr[i];
+		}
+		
+		if(str.equals(rev))
+			System.out.println("It is palindrome string");
+		else
+			System.out.println("It is not palindrome string");
+	}
+}
+
+Q)Write a java program to display reverse of a sentence?
+
+input:
+	This Is Java Class
+
+output:
+	Class Java Is This 
+
+ 
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This Is Java Class";
+
+		String[] sarr=str.split(" ");   
+
+		String rev="";
+		for(int i=sarr.length-1;i>=0;i--)
+		{
+			rev+=sarr[i]+" ";
+		}
+
+		System.out.println(rev);
+	}
+}
+	
+Q)Write a java program to display reverse of a word in a sentence?
+
+input:
+	This Is Java Class
+
+output:
+	sihT sI avaJ ssalC 
+
+ex:
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="This Is Java Class";
+
+		String[] sarr=str.split(" ");   // This    Is    Java    Class
+
+		
+		//for each loop
+		String rev="";
+		for(String s:sarr)
+		{
+			char[] carr=s.toCharArray();
+
+			for(int i=carr.length-1;i>=0;i--)
+			{
+				rev+=carr[i];
+			}
+			//add space
+			rev+=" ";
+		}
+
+		System.out.println(rev);
+	}
+}
+
+Q)Write a java program to find out duplicate characters from given string?
+
+input:
+	google 
+
+output:
+	go 
+
+ex:
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="google";
+
+		String characters="";
+		String duplicates="";
+
+		for(int i=0;i<str.length();i++)
+		{
+			String current=Character.toString(str.charAt(i));
+
+			if(characters.contains(current))
+			{
+				if(!duplicates.contains(current))
+				{
+					duplicates+=current;
+					continue;
+				}
+			}
+			characters+=current;
+		}
+
+		System.out.println(duplicates);
+	}
+}
+
+
+
+Q)Write a java program to find out unique/distinct characters from given string?
+
+input:
+	google 
+
+output:
+	gole  
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		String str="google";
+
+		String characters="";
+		String duplicates="";
+
+		for(int i=0;i<str.length();i++)
+		{
+			String current=Character.toString(str.charAt(i));
+
+			if(characters.contains(current))
+			{
+				if(!duplicates.contains(current))
+				{
+					duplicates+=current;
+					continue;
+				}
+			}
+			characters+=current;
+		}
+
+		System.out.println(characters);
+	}
+}
+
+Assignments
+==============
+
+Q)Write a java program to number of uppercase letters, lowercase letters,
+digits , words and spaces?
+
+input:
+	This Is Java Class 29
+
+output:
+	uppercase : 4 
+	lowercase : 11
+	digits	  : 2 
+	words     : 5
+	spaces    : 4	
+
+
+Q)Write a java program to display the string starting with uppecase letter?
+input:
+	This is Java class for Freshers
+
+output:
+	This Java Freshers
+
+
+Q)Write a java program to display the strings which are palindrome?
+input:
+	racar is madam for dad
+
+output:
+	racar madam dad 
+
+
+
+
+
+
+
+
+
+
+
+

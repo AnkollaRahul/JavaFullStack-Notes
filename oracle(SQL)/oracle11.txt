@@ -1,0 +1,299 @@
+Cursors
+========
+Cursor is a memory location which is used to use run SQL commands.
+
+We have two types of cursors.
+
+1) Implicit cursor
+
+2) Explicit cursor
+
+1) Implicit cursor
+------------------
+All the activities related to cursor like opening the cursor, processing the cursor and closing the cursor which is done automatically is called implicit cursor.
+
+We have four types of implicit cursor attributes.
+
+i) SQL%ISOPEN 
+------------
+	It is a boolean attribute value which always returns false.
+
+ii) SQL%FOUND
+-------------
+	It is a boolean attribute which returns true if SQL command is success and 
+	returns false if SQL command is failed.
+
+iii) SQL%NOTFOUND
+---------------
+	It is completely inverse of SQL%FOUND.
+	
+	It is a boolean attribute which returns false if SQL command is success and 
+	returns true if SQL command is failed.
+
+iv) SQL%ROWCOUNT
+---------------
+	It will return number of records effected in a database table.
+
+
+To see the output in PL/SQL we need to use below command.
+ex:
+	SQL> set serveroutput on
+
+
+SQL%ISOPEN
+-----------
+	BEGIN
+	IF  SQL%ISOPEN THEN 
+	DBMS_OUTPUT.PUT_LINE('Cursor is open');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('Cursor is closed');
+	END IF;
+	END;
+	/	
+
+SQL%FOUND
+----------
+	BEGIN
+	update student set sname='rani' where sno=101;
+	IF  SQL%FOUND THEN 
+	DBMS_OUTPUT.PUT_LINE('Record Updated');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('Record Not Updated');
+	END IF;
+	END;
+	/
+
+
+SQL%NOTFOUND
+----------
+	BEGIN
+	update student set sname='rani' where sno=105;
+	IF  SQL%NOTFOUND THEN 
+	DBMS_OUTPUT.PUT_LINE('Record Updated');
+	ELSE
+	DBMS_OUTPUT.PUT_LINE('Record Not Updated');
+	END IF;
+	END;
+	/
+
+SQL%ROWCOUNT
+-----------
+	BEGIN
+	update student set sname='raja';
+	DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' Records updated');
+	END;
+	/
+
+2) Explicit cursor
+------------------
+All the activities related to cursor like open the cursor, processing the cursor and closing the cursor which is done by a programmer is called explicit cursor.
+
+We will use explicit cursor when select statement returns more then one row.
+
+We have four types of explicit cursor attributes.
+
+i) %ISOPEN 
+---------
+	It is a boolean attribute which returns true if cursor is opened and returns false 
+	if cursor is closed.
+
+ii) %FOUND
+----------
+	It is a boolean attribute which returns true if SQL command is success and returns false
+	if SQL command is failed.
+
+iii) %NOTFOUND 
+-------------
+	It is a boolean attribute which returns false if SQL command is success and returns true
+	if SQL command is failed.
+
+iv) %ROWCOUNT 
+----------
+	It will return number of records effected in a database table.
+
+Steps to work with explicit cursor
+---------------------------------
+step1:
+	Declare the cursor
+	ex:
+		CURSOR <cursor_name> is select stmt;
+step2:
+	Open the cursor 
+	ex:
+		OPEN  <cursor_name>;
+step3:
+	Fetch the data from cursor to local variables
+	ex:
+		FETCH <cursor_name> into <variables>;
+step4:
+	Close the cursor 
+	ex:
+		CLOSE <cursor_name>;
+
+
+Q) Write a PL/SQL program to display employee names from emp table?
+
+	DECLARE 
+	CURSOR C1 is select ename from emp;
+	L_ename emp.ename%TYPE;
+	BEGIN
+	OPEN C1;
+	LOOP
+	FETCH C1 into L_ename;
+	DBMS_OUTPUT.PUT_LINE(L_ename);
+	EXIT WHEN C1%NOTFOUND;
+	END LOOP;
+	CLOSE C1;
+	END;
+	/
+
+
+Q)Write a PL/SQL program to display employee id , employee name and employee salary from emp table?
+
+	DECLARE 
+	CURSOR C2 is select eid,ename,esal from emp;
+	L_eid emp.eid%TYPE;
+	L_ename emp.ename%TYPE;
+	L_esal emp.esal%TYPE;
+	BEGIN
+	OPEN C2;
+	LOOP
+	FETCH C2 into L_eid,L_ename,L_esal;
+	DBMS_OUTPUT.PUT_LINE(L_eid||' '||L_ename||' '||L_esal);
+	EXIT WHEN C2%NOTFOUND;
+	END LOOP;
+	CLOSE C2;
+	END;
+	/
+
+Q) Write a PL/SQL program to display employees information emp table?
+
+	DECLARE
+	CURSOR C3 is select * from emp;
+	A emp%ROWTYPE;
+	BEGIN
+	OPEN C3;
+	LOOP
+	FETCH C3 into A;
+DBMS_OUTPUT.PUT_LINE(A.eid||' '||A.ename||' '||A.esal||' '||A.deptno||' '||A.job||' '||A.comm);
+	EXIT WHEN C3%NOTFOUND;
+	END LOOP;
+	CLOSE C3;
+	END;
+	/
+
+
+ex:
+	DECLARE
+	CURSOR C4 is select e.eid,e.ename,d.dname,d.dloc from emp e , dept d where 
+				(e.deptno=d.deptno);
+	L_eid emp.eid%TYPE;
+	L_ename emp.ename%TYPE;
+	L_dname dept.dname%TYPE;
+	L_dloc dept.dloc%TYPE;
+
+	BEGIN
+	OPEN C4;
+	LOOP
+	FETCH C4 into L_eid,L_ename,L_dname,L_dloc;
+	DBMS_OUTPUT.PUT_LINE(L_eid||' '||L_ename||' '||L_dname||' '||L_dloc);
+	EXIT WHEN C4%NOTFOUND;
+	END LOOP;
+	CLOSE C4;
+	END;
+	/
+
+
+
+Procedures
+==========
+A procedure is a named PL/SQL block which compiled and execute in database for repeated execution.
+
+It is also known as stored PL/SQL procedures.
+
+syntax:
+	create or replace procedure <procedure_name>
+	is
+	begin
+	-
+	-
+	-
+	END;
+	/
+
+Q) Write a procedure to display Hello World?
+
+
+	create or replace procedure p1
+	is
+	begin
+	DBMS_OUTPUT.PUT_LINE('Hello World');
+	END;
+	/
+
+	To execute the procedure we need to use below command.
+	ex:
+		SQL> exec  p1;
+
+Every procedure may contains three parameters.
+
+1) IN parameter 
+
+2) OUT parameter 
+
+3) IN OUT parameter 
+
+
+1) IN parameter 
+------------------
+It will accept the values from the user.
+
+
+Q) Write a procedure to perform sum of two numbers?
+
+	create or replace procedure sum(A IN number,B IN number)
+	is
+	C number;
+	begin
+	C:=A+B;
+	DBMS_OUTPUT.PUT_LINE('sum of two numbers is ='||C);
+	END;
+	/
+	
+	We can execute the procedure by using below command.
+	ex:
+		SQL> exec  sum(10,20);	
+
+
+Using procedures we can perform DML operations.
+
+Q) Write a procedure to update student name based on student number?
+
+	create or replace procedure update_name(L_sno IN student.sno%TYPE)
+	is
+	begin
+	update student set sname='rani' where sno=L_sno;
+	DBMS_OUTPUT.PUT_LINE('Record updated');
+	END;
+	/
+
+	To execute the procedure we need to use below command.
+	ex:
+		SQL> exec  update_name(101);
+
+
+
+
+Q) Write a procedure to delete student record based on student number?
+
+	create or replace procedure delete_record(L_sno IN student.sno%TYPE)
+	is
+	begin
+	delete from student where sno=L_sno;
+	DBMS_OUTPUT.PUT_LINE('Record deleted');
+	END;
+	/
+
+	To execute the procedure we need to use below command.
+	ex:
+		exec  delete_record(102);

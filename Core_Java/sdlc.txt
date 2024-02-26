@@ -1,0 +1,129 @@
+SDLC
+=====
+SDLC stands for Software Development Life Cycle.
+
+It is a process adopt by IT industry to develop accurate and quality of softwares.
+
+There are six phases are there in SDLC.
+
+1)Feasibility study
+
+2)Analysis
+
+3)Designing 
+
+4)Coding 
+
+5)Testing
+
+6)Delivery and Maintainence
+
+
+1)Feasibility study
+-------------------
+Feasibility study completed depends upon TELOS formulea.
+ex:
+	T - Technical Feasibility
+	E - Ecnomical Feasibility
+	L - Legal Feasibility
+	O - Operational Feasibility
+        S - Scheduled Feasibility 
+
+All the above information they will keep in a document called BDD.
+
+BDD stands for Business Designed Document. 
+
+
+2)Analysis 
+-------------
+In this phase , system analyst or product owner will involved.
+
+They will seperate system requirements and software requirements.
+
+They will keep this information in a document called SRS.
+
+SRS stands Software Requirement Specification.
+
+
+3)Designing 
+-----------
+Designing can be performed in two ways.
+
+i)High level designing
+--------------------
+	Manager is responsible to perform high level designing.
+
+	In high level designing ,we will design main modules.
+
+ii)Low level designing 
+--------------------
+	Team Lead/Project Lead is resposible to perform low level designing.
+
+	In low level designing , we will design sub-module/child modules.
+
+All this above information we will keep in a document called PDD/TDD.
+
+Here PDD stands for Project Design Document.
+Here TDD stands for Technical Design Document.
+
+4)Coding
+-----------
+In coding phase, developers will involved.
+
+Developers are responsible to generate the build(source code).
+
+Once our build is ready then developer even responsible to perform white box testing.
+
+
+5)Testing Phase 
+-----------------
+In this phase, testing team or QA team will involved.
+
+The will test the code by using one software component called STLC.
+
+STLC stands for Software Testing Life Cycle.
+
+Testing Team or QA team is responsible to perform black box testing.
+
+
+6)Delivery  & maintainence phase
+---------------------------------
+Before delivery we will perform UAT testing.
+
+UAT stands for User Acceptance Testing.
+
+UAT testing is classified into two types.
+
+i)Alpha testing
+
+ii)Beta testing 
+
+
+Project
+=========
+Project is a collection of modules.
+ex:
+	customer module
+	login module
+	registration module
+	payment module
+	report generation module
+	and etc.
+
+Every project contains two domains.
+
+1)Technical Domain 
+---------------
+	Using which technology we developed our project.
+	ex:
+		Java
+	
+2)Functional Domain 
+-----------------
+	It describes state of a project.
+	ex:
+		Healthcare domain 
+		Insaurance domain 
+		Banking domain 
+		ERP domain 
+		and etc.

@@ -1,0 +1,61 @@
+//people table
+CREATE TABLE people ( 
+  person_id   INTEGER NOT NULL PRIMARY KEY, 
+  given_name  VARCHAR2(100) NOT NULL, 
+  family_name VARCHAR2(100) NOT NULL, 
+  title       VARCHAR2(20), 
+  birth_date  DATE 
+);
+
+
+//patients table
+CREATE TABLE patients ( 
+  patient_id          INTEGER NOT NULL PRIMARY KEY REFERENCES people (person_id), 
+  last_admission_date DATE 
+);
+
+
+//Create table STAFF
+
+CREATE TABLE staff ( 
+  staff_id   INTEGER NOT NULL PRIMARY KEY REFERENCES people (person_id), 
+  hired_date DATE 
+);
+
+
+INSERT INTO people 
+VALUES (1, 'Dave', 'Badger', 'Mr', date'1960-05-01');
+
+INSERT INTO people 
+VALUES (2, 'semi', 'Basu', 'Mr', date'1960-04-01');
+INSERT INTO people 
+VALUES (3, 'Divya', 'rathode', 'Ms', date'1960-03-01');
+
+
+INSERT INTO people (person_id, given_name, family_name, title, birth_date) 
+  WITH names AS ( 
+    SELECT 4, 'Ruth',     'Fox',      'Mrs', date'1970-05-06' FROM dual UNION ALL 
+    SELECT 5, 'Isabelle', 'Squirrel', 'Miss',  date'1998-04-03' FROM dual UNION ALL 
+    SELECT 6, 'Justin',   'Frog',     'Master',  date'1990-09-08' FROM dual UNION ALL 
+    SELECT 7, 'Lisa',     'Owl',      'Dr', date'1980-09-07' FROM dual 
+  ) 
+  SELECT * FROM names;
+
+
+As we have gone through adding single and multiple columns to an existant table with constraints 
+I want u do practice on following things.... 
+
+
+====>   After inserting rows add one more column as salary in people table
+         then update data in it, add 2 more columns to it, delete 1 column 
+         and update data in one more column
+
+====>   while adding a column use not null constraints
+
+       note down the error you are getting and set the default value and again change length of data type of any field
+
+
+NOTE: PLZZZZ make sure to complete it by the end of the day
+
+
+        ********************Thankss***************************

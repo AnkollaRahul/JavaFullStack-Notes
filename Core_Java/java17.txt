@@ -1,0 +1,236 @@
+Q)Write a java program to find out GCD(Greatest Common Divisor) of two numbers?
+
+input:
+	12  18 
+
+output:
+	6 
+
+ex:
+
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		int a=12,b=18,gcd=0;
+
+		for(int i=1;i<12 || i<18;i++)
+		{
+			if(a%i==0 && b%i==0)
+			{
+				gcd=i;
+			}
+		}
+
+		System.out.println("GCD of two numbers is ="+gcd);
+	}
+}
+
+Q)Write a java program to display list of prime numbers from 1 to 100?
+
+output:
+	2, 3, 5, 7, 11, 13, 17, 19, 23, 
+	29, 31, 37, 41, 43, 47, 53, 59, 
+	61, 67, 71, 73, 79, 83, 89, 97.
+
+ex:
+
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		for(int i=2;i<=100;i++)
+		{
+			boolean flag=true;
+
+			for(int j=2;j<i;j++)
+			{
+				if(i%j==0)
+				{
+					flag=false;
+					break;
+				}
+			}
+			if(flag==true)
+				System.out.print(i+" ");
+		}
+	}
+}
+
+Various ways to declare methods in java
+=========================================
+There are four ways to declare methods in java.
+
+1) No returntype With no argument method 
+
+2) No returntype With argument method 
+
+3) With returntype With no argument method
+
+4) With returntype With argument method 
+
+
+1) No returntype With no argument method 
+----------------------------------------
+If no arguments then we need to ask input values inside callie method.
+
+Q)Write a java program to perform sum of two numbers using no returntype with no argument method?
+
+import java.util.Scanner;
+class Test
+{
+	public static void main(String[] args)
+	{
+		//caller method
+		sum();
+	}
+
+	//callie method
+	public static void sum()
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a=sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b=sc.nextInt();
+
+		int c=a+b;
+
+		System.out.println("sum of two numbers is ="+c);
+
+	}
+}
+
+3) With returntype With no argument method
+--------------------------------------------
+
+A returntype is completely depends upon output datatype.
+
+
+Q)Write a java program to perform sum of two numbers using with returntype with no argument method?
+
+
+import java.util.Scanner;
+class Test
+{
+	public static void main(String[] args)
+	{
+		//caller 
+		int k=sum();
+		System.out.println("sum of two numbers is ="+k);
+	}
+	//callie method
+	public static int sum()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the First Number :");
+		int a=sc.nextInt();
+		System.out.println("Enter the Second Number :");
+		int b=sc.nextInt();
+
+		int c=a+b;
+
+		return c;
+	}
+}
+
+2) No returntype With argument method 
+=======================================
+Arguments are completly depends upon number of inputs.
+
+Q)Write a java program to perform sum of two numbers using no returntype with arguement method?
+
+import java.util.Scanner;
+class Test
+{
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a=sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b=sc.nextInt();
+		
+		//caller method
+		sum(a,b);
+	}
+	public static void sum(int a,int b)
+	{
+		int c=a+b;
+		System.out.println("sum of two numbers is ="+c);
+	}
+}
+
+4) With returntype With argument method 
+=======================================
+
+Q)Write a java program to find out sum of two numbers using  with returntype with argument method?
+
+import java.util.Scanner;
+class Test
+{
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the first number :");
+		int a=sc.nextInt();
+		
+		System.out.println("Enter the second number :");
+		int b=sc.nextInt();
+		
+		//caller method
+		System.out.println("sum of two numbers is ="+sum(a,b));
+	}
+	//callie method
+	public static int sum(int a,int b)
+	{
+		int c=a+b;
+
+		return c;
+	}
+}
+
+Assignment
+===========
+Q)Write a java program to find out factorial of a given number ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,255 @@
+TCL commands
+=============
+1) commit
+2) rollback
+3) savepoint 
+
+1) commit
+-----------
+It is used to make the changes permanent to database.
+
+ex:
+	drop table student;
+
+	create table student(sno number(3),sname varchar2(10),sadd varchar2(12));
+
+	insert into student values(101,'raja','hyd');
+	
+	insert into student values(102,'ravi','delhi');
+
+	commit;
+	
+2) rollback
+-----------
+It is used to undo the changes which are not permanent.
+
+syntax:
+	rollback;
+
+ex:
+	drop table student;
+
+	create table student(sno number(3),sname varchar2(10),sadd varchar2(12));
+
+	insert into student values(101,'raja','hyd');
+	
+	insert into student values(102,'ravi','delhi');
+
+	commit;
+
+	insert into student values(103,'ramana','vizag');
+	
+	insert into student values(104,'ramulu','pune');
+
+	select * from student; //4 records 
+
+	rollback;
+
+	select * from student; //2 records 
+	
+3) savepoint
+--------------
+It is used to make logical transaction in a database table.
+
+Instead of complete rollback we can rollback upto savepoint.
+
+syntax:
+		savepoint <save_point_name>;
+
+ex:
+	drop table student;
+
+	create table student(sno number(3),sname varchar2(10),sadd varchar2(12));
+
+	insert into student values(101,'raja','hyd');
+	
+	insert into student values(102,'ravi','delhi');
+
+	savepoint sp1;
+
+	insert into student values(103,'ramana','vizag');
+	
+	insert into student values(104,'ramulu','pune');
+
+	savepoint sp2;
+
+	insert into student values(105,'Jack','USA');
+	
+	insert into student values(106,'James','UK');
+
+	select * from student; // 6 records 
+		
+	rollback to sp2;
+
+	select * from student; // 4 records 
+
+	rollback to sp1;
+
+	select * from student; // 2 records 
+
+DCL commands
+============
+1) grant 
+2) revoke 
+
+Schema:
+-------
+	Schema is a memory location which is used to run SQL commands.
+
+Privileges:
+----------
+	Permissions given to a user is called privileges.
+
+	In general, rights given to a user is called privileges. 
+
+	We have two types of privileges.
+
+	1) System privilege : Permissions given by DBA to user.
+
+	2) Object privilege : Permissions given by one user to another user.
+	
+
+1) grant 
+--------
+It is used to grant the permissions to the user.
+
+syntax:
+	grant <resource1>,<resource2> to <user_name>;
+
+2) revoke
+----------
+It is used to revoke the permissions from the user.
+
+syntax:
+	revoke <resource1>,<resource2> from <user_name>;
+
+
+DBA> create user aravind identified by aravind;
+DBA> create user manasa identified by manasa;
+
+
+Aravind> conn aravind/aravind      --logon denied
+
+Manasa> conn manasa/manasa	   --logon denied
+
+
+DBA> grant connect,resource to aravind,manasa;	
+
+Aravind> conn aravind/aravind      
+
+Manasa> conn manasa/manasa
+
+
+Aravind>
+create table employee(eid number(3),ename varchar2(10),esal number(10));
+insert into employee values(201,'Alan',10000);
+insert into employee values(202,'Jose',20000);
+insert into employee values(203,'Mark',30000);
+commit;
+select * from employee;
+
+Manasa>  select * from employee; //table or view does not exist
+
+Aravind> grant select on employee to manasa;
+
+Manasa> select * from aravind.employee;
+
+Manasa> delete from aravind.employee;   --insufficient privileges
+
+Aravind> grant delete,update on employee to manasa;
+
+Manasa> delete from aravind.employee;   
+Manasa> commit;
+
+Aravind> select * from employee; // no rows selected
+
+Aravind> revoke select,update,delete on employee from manasa;
+
+Manasa> disc 
+Aravind> disc 
+
+DBA> revoke connect,resource from aravind,manasa;
+
+
+Pseudo Columns
+==============
+A pseudo column means a column which is not real.
+
+We have two pseudo columns.
+
+1) ROWNUM 
+
+2) ROWID 
+
+1) ROWNUM 
+---------
+ROWNUM values always starts with 1 and increment by 1.
+
+ROWNUM values are temperory.Once the query is executed we will loss the rownum values.
+
+ex:
+	select eid,ename,esal from emp;
+	select rownum,eid,ename,esal from emp;
+	select rownum,sno,sname,sadd from student;
+
+2) ROWID
+--------
+ROWID is a memory address where our records will store in a database table.
+
+ROWID is permanent.
+
+ex:
+	select rowid,eid,ename,esal from emp;
+	select rowid,rownum,eid,ename,esal from emp;
+	
+
+Interview Queries
+----------------
+Q) Write a query to see the list of users present in database?
+
+	select username from all_users;
+
+Q) Write a query to drop the user?
+
+	drop user aravind cascade;
+	drop user manasa cascade;
+
+
+Q) Write a query to display first three records from employee table?
+
+	select * from emp where rownum<=3;
+
+
+Q) Write a query to display exact fourth record from employee table?
+
+	select * from emp where rownum<=4
+	minus
+	select * from emp where rownum<=3;
+
+
+Synonyms
+========
+Alternate name given to a table is called synonym.
+
+We can use synonym name instead of table name for all the commands.
+
+Using synonym, length of the table will reduce.
+
+syntax:
+	create synonym <synonym_name> for <table_name>;
+ex:
+	create synonym sy1 for student;
+
+	select * from sy1;
+	
+	delete from sy1;
+
+
+Q) Write a query to the list of synonyms present in database?
+
+	select synonym_name from user_synonyms;
+
+
+Q) Write a query to drop the synonyms?
+	
+	drop synonym  sy1;

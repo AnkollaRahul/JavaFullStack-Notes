@@ -1,0 +1,467 @@
+this keyword
+============
+A this keyword is a java keyword which is used to refer current class object reference.
+
+We can utilize this keyword in following ways.
+
+i) To refer current class variables
+
+ii)To refer current class methods 
+
+iii)To refer current class constructors 
+
+i) To refer current class variables
+-------------------------------------
+class A
+{
+	int i=10;
+	int j=20;
+	A(int i,int j)
+	{
+		System.out.println(i+" "+j); // 100 200
+		System.out.println(this.i+" "+this.j); //10  20 
+	}
+}
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		A a=new A(100,200);
+	}
+}
+
+ii)To refer current class methods 
+----------------------------------
+class A
+{
+	public void m1()
+	{
+		System.out.println("M1 method");
+		this.m2();
+	}
+	public void m2()
+	{
+		System.out.println("M2 method");
+	}
+}
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		A a=new A();
+		a.m1();
+	}
+}
+
+iii)To refer current class constructor
+--------------------------------------
+class A
+{
+	A()
+	{
+		System.out.println("0-arg const");
+	}
+	A(int i)
+	{
+		this();
+		System.out.println("int arg const");
+	}
+	A(double d)
+	{
+		this(10);
+		System.out.println("double arg const");
+	}
+}
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		A a=new A(10.5d);
+	}
+}
+
+
+super keyword
+=============
+A super keyword is a java keyword which is used to refer super class object reference.
+
+We can utilize super keyword in following ways.
+
+i) To refer super class variables 
+
+ii) To refer super class methods 
+
+iii) To refer super class constructors 
+
+i) To refer super class variables 
+---------------------------------
+class A
+{
+	int i=10;
+	int j=20;
+}
+class B extends A 
+{
+	int i=100;
+	int j=200;
+	B(int i,int j)
+	{
+		System.out.println(this.i+" "+this.j); // 100 200
+		System.out.println(super.i+" "+super.j); //10 20
+		System.out.println(i+" "+j); // 1000 2000
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		B b=new B(1000,2000);
+	}
+}
+
+ii) To refer super class methods 
+--------------------------------
+class A
+{
+	public void m1()
+	{
+		System.out.println("M1 method");
+	}
+}
+class B extends A 
+{
+	public void m2()
+	{
+		super.m1();
+		System.out.println("M2 method");
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		B b=new B();
+		b.m2();
+	}
+}
+
+iii) To refer super class constructors 
+------------------------------------
+class A
+{
+	A()
+	{
+		System.out.println("A const");
+	}
+}
+class B extends A 
+{
+	B()
+	{
+		super();
+		System.out.println("B const");
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		new B();
+	}
+}
+
+Interfaces
+===========
+An interface is a collection of zero or more abstract methods. 
+
+Abstract methods are incomplete methods because they ends with semicolon and do not have any body.
+
+It is not possible to create object for interfaces.
+
+To write the implementation of abstract methods of an interface we will use implementation class.
+
+It is possible to create object for implementation class.
+
+By default every abstract method is a public and abstract.
+
+Interface contains only constants i.e public static final.
+
+syntax:
+-------
+	interface <interface_name>
+	{
+		-
+		- //abstract methods
+		- //constants
+		-
+	}
+
+If we know Service Requirement Specification then we need to use interface.
+
+Diagram: java26.1
+
+ex:
+----
+interface A 
+{
+	//abstract method
+	public abstract void m1();
+}
+class B implements A 
+{
+	public void m1()
+	{
+		System.out.println("M1 method");
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		A a=new B();
+		a.m1();
+	}
+}
+
+ex:
+----
+interface A 
+{
+	//abstract method
+	public abstract void m1();
+}
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		//Anonymous inner class
+		A a=new A()
+		{
+			public void m1()
+			{
+				System.out.println("M1 method");
+			}
+		};
+		a.m1();
+	}
+}
+
+
+
+If interface contains four methods then we need to override all methods otherwise we will get compile time error.
+
+ex:
+
+interface A 
+{
+	//abstract methods
+	public abstract void show();
+	public void display();
+	abstract void view();
+	void see();
+}
+class B implements A 
+{
+	public void show()
+	{
+		System.out.println("show-method");
+	}
+	public void display()
+	{
+		System.out.println("display-method");
+	}
+	public void view()
+	{
+		System.out.println("view-method");
+	}
+	public void see()
+	{
+		System.out.println("see-method");
+	}
+
+}
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		A a=new B();
+		a.show();
+		a.display();
+		a.see();
+		a.view();
+	}
+}
+
+In java, a class can't extends more then one class but interface can extends more then one interface.
+
+ex:
+
+interface A 
+{
+	void m1();
+}
+interface B
+{
+	void m2();
+}
+interface C extends A,B
+{
+	void m3();
+}
+
+class D implements C
+{
+	public void m1()
+	{
+		System.out.println("M1-method");
+	}
+	public void m2()
+	{
+		System.out.println("M2-method");
+	}
+	public void m3()
+	{
+		System.out.println("M3-method");
+	}
+
+}
+
+class Test
+{
+	public static void main(String[] args)
+	{
+			C c =new D();
+			c.m1();
+			c.m2();
+			c.m3();
+	}
+}
+
+A class can implements more then one interface.
+
+ex:
+---
+interface Father
+{
+	//constant
+	float HT=6.2f;
+	void height();
+}
+interface Mother
+{
+	float HT=5.8f;
+	void height();
+}
+class Child implements Father,Mother
+{
+	public void height()
+	{
+		float height=(Father.HT+Mother.HT)/2;
+		System.out.println("Child Height :"+height);
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Child c=new Child();
+		c.height();
+	}
+}
+
+Java 8 
+=======
+According java 8 version, interface is a collection of default methods, static methods and abstract methods.
+
+
+
+Marker interface
+================
+Interface which does not have any constants or abstract methods is called marker interface.
+
+Emptry interface is called marker interface.
+
+Using marker interface we will get some ability to do.
+
+We have following list of marker interface.
+
+ex:
+	Serializable 
+	Cloneable
+	Remote 
+	and etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

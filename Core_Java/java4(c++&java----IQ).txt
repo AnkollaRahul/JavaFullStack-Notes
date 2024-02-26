@@ -1,0 +1,138 @@
+Q)Differences between C++ and Java?
+
+C++					Java
+------					-------
+It is developed by Bjarne Stroustrup.	It is developed by James Gosling.
+
+It is a partial object oriented 	It is purely object oriented 
+programming language.			programming language.
+
+It is a platform dependent.		It is a platform independent.
+
+Memory allocation and deallocation	Memory allocation and deallocation 
+will taken create by a programmer.	will taken care by a JVM.
+
+It supports multiple inheritance.	It does not support multiple 
+					inheritance.
+
+It supports pointers.			It does not support pointers.
+
+It supports operator overloading.	It does not support operator
+					overloading.
+
+It supports preprocessor directory(#).	It does not support preprocessor
+					directory(#).
+
+It supports three access specifiers	It supports four access modifiers i.e
+i.e public,private and protected.	default,public,private and protected.
+
+It contains three loops i.e do while 	It contains four loops i.e do while
+loop, while loop and for loop.  	loop, while loop, for loop and for 
+					each loop.
+
+
+Q)What are the features of Java?
+
+We have following important features in java.
+
+1)Simple
+
+2)Object oriented 
+
+3)Platform independent 
+
+4)Highly secured  
+
+5)Robust 
+
+6)Portable 
+
+7)Architecture Neutral 
+
+8)Multithreaded 
+
+9)Dynamic 
+
+and etc.
+
+
+
+Q)Who is the responsible to destroy objects in java?
+
+  Garbage Collector 
+
+
+
+Q)What is garbage collector ?
+
+  Garbage collector is used to destroy unused or useless objects from java.
+
+
+
+Q)In how many ways we can call garage collector?
+
+  There are two ways to call garbage collector in java.
+
+  1) System.gc()
+	
+  2) Runtime.getRuntime().gc() 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

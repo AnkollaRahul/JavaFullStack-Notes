@@ -1,0 +1,634 @@
+Q)write a java program to concatinate two arrays and display them in sorting order?
+
+input:
+	arr1 = 9 6 8 10 7 
+
+	arr2 = 1 5 4 2 3 
+
+output:
+	1 2 3 4 5 6 7 8 9 10
+
+ex:
+import java.util.Arrays;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[] arr1 ={9,6,8,10,7}; 
+		int[] arr2 ={1,5,4,2,3};
+		
+		int size1=arr1.length;
+		int size2=arr2.length;
+
+		arr1=Arrays.copyOf(arr1,size1+size2);	
+
+		int j=0;
+		for(int i=size1;i<arr1.length;i++)
+		{
+			arr1[i]=arr2[j++];
+		}
+
+		Arrays.sort(arr1);
+
+		//display the elements
+		for(int ele:arr1)
+		{
+			System.out.print(ele+" ");
+		}
+	}
+}
+
+Q)Write a java program to insert given element on given index?
+
+input:
+	arr = 5 8 1 4 6 9 
+
+	ele = 100
+
+	index = 3
+
+output:
+	5 8 1 100 4 6 9 
+
+ex:
+
+import java.util.Arrays;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[] arr ={5,8,1,4,6,9}; 
+		int ele = 100;
+		int index = 3;
+
+		arr=Arrays.copyOf(arr,arr.length+1);
+
+		for(int i=arr.length-1;i>=index;i--)
+		{
+			arr[i]=arr[i-1];
+		}
+		
+		arr[index]=ele;
+
+		//display
+		for(int i:arr)
+		{
+			System.out.print(i+" ");
+		}
+	}
+}
+
+
+Two Dimensional Array
+======================
+Two dimensional array is a combination of rows and columns.
+
+Two dimensional array is implemented based on array of arrays approach but not in matrix form.
+
+The main objective of two dimensional array is memory utilization.
+
+Two dimensional array is used to develop business oriented applications, gaming applications and matrix type of applications.
+
+
+We can declare two dimensional array as follow.
+
+syntax:
+	datatype[][] variable_name= new int[rows][cols];
+
+ex:
+	int[][] arr=new [3][3];
+
+	Here we can store 9 elements.
+
+
+Q)Write a java program to display array elements in matrix form?
+
+import java.util.Scanner;
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter the rows :");
+		int rows=sc.nextInt();//3
+
+		System.out.println("Enter the cols :");
+		int cols=sc.nextInt();//3
+
+		int[][] arr=new int[rows][cols];
+
+		//insert elements
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				System.out.println("Enter the element :");
+				arr[i][j]=sc.nextInt();
+			}
+		}
+
+		//display elements
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				System.out.print(arr[i][j]+" ");
+			}
+			//new line
+			System.out.println("");
+		}
+
+	}
+}
+
+
+
+Q)Write a java program to perform sum of diagonal elements?
+
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+				};
+				
+		//display elements
+		int sum=0;
+		for(int i=0;i<3;i++)
+		{
+			for(int j=0;j<3;j++)
+			{
+				if(i==j)
+				{
+					sum=sum+arr[i][j];
+				}
+			}
+		}
+		System.out.println("sum of diagonal elements is ="+sum);
+
+	}
+}
+
+Q)Write a java program to display sum of upper triangle elements?
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+				};
+				
+		//display elements
+		int sum=0;
+		for(int i=0;i<3;i++)
+		{
+			for(int j=0;j<3;j++)
+			{
+				if(i<j)
+				{
+					sum=sum+arr[i][j];
+				}
+			}
+		}
+		System.out.println("sum of upper triangle elements is ="+sum);
+
+	}
+}
+
+Q)Write a java program to display sum of lower triangle elements?
+
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		int[][] arr={
+						{1,2,3},
+						{4,5,6},
+						{7,8,9}
+				};
+				
+		//display elements
+		int sum=0;
+		for(int i=0;i<3;i++)
+		{
+			for(int j=0;j<3;j++)
+			{
+				if(i>j)
+				{
+					sum=sum+arr[i][j];
+				}
+			}
+		}
+		System.out.println("sum of lower triangle elements is ="+sum);
+
+	}
+}
+
+
+Q)Write a java program to display array elements in spiral form ?
+
+input:
+	1 2 3 
+	4 5 6
+	7 8 9 
+
+output:
+	1 2 3 6 9 8 7 4 5 
+
+ex:
+
+
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+        int[][] matrix = {
+            			{1, 2, 3},
+            			{4, 5, 6},
+            			{7, 8, 9}
+        		};
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        int top = 0;
+        int bottom = rows - 1;
+        int left = 0;
+        int right = cols - 1;
+
+        while (true) 
+		{
+            if (left > right) 
+			{
+                break;
+            }
+
+            // Print top row
+            for (int i = left; i <= right; i++) {
+                System.out.print(matrix[top][i] + " ");
+            }
+            top++;
+
+            if (top > bottom) {
+                break;
+            }
+
+            // Print right column
+            for (int i = top; i <= bottom; i++) {
+                System.out.print(matrix[i][right] + " ");
+            }
+            right--;
+
+            if (left > right) {
+                break;
+            }
+
+            // Print bottom row
+            for (int i = right; i >= left; i--) 
+			{
+                System.out.print(matrix[bottom][i] + " ");
+            }
+            bottom--;
+    
+            if (top > bottom) {
+                break;
+            }
+
+            // Print left column
+            for (int i = bottom; i >= top; i--) 
+	    {
+                System.out.print(matrix[i][left] + " ");
+            }
+            left++; 
+	}//while loop  
+    }
+}
+
+
+Anonymous Array
+==================
+Sometimes we will declare an array without name such type of nameless arrays are called anonymous array.
+
+The main objective of anonymous array is just for instance use.
+
+We can declare anonymous array as follow.
+
+ex:
+	new int[]{10,20,30};
+	new int[][]{{10,20,30},{40,50,60}};
+
+ex:
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+		//caller method
+		sum(new int[]{10,20,30});
+
+	}
+	//callie method
+	public static void sum(int[] arr)
+	{
+		int sum=0;
+		for(int i:arr)
+		{
+			sum+=i;
+		}
+		System.out.println(sum);
+	}
+}
+
+ex:2
+----
+public class Test 
+{
+    public static void main(String[] args) 
+    {
+		//caller method
+		System.out.println(sum(new int[]{10,20,30}));
+		
+	}
+	//callie method
+	public static int sum(int[] arr)
+	{
+		int sum=0;
+		for(int i:arr)
+		{
+			sum+=i;
+		}
+		return sum;
+	}
+}
+
+OOPS
+=====
+OOPS stands for Object Oriented Programming System/Structure.
+
+Object oriented technology
+--------------------------
+A technology which provides very good environment to represent our data in the form of objects is called object oriented technology.
+
+A technology is said to be object oriented if it support following features.
+
+ex:
+	class 
+	object 
+	Abstraction
+	Encapsulation
+	Inheritance & 
+	Polymorphism
+	 
+	
+class
+======
+A class is a collection of data members and behaviours in a single unit.
+
+Here data members means variables, fields and properties.
+
+Here behaviours means methods, actions and characteristics.
+
+In general , a class is a collection of variables and methods. 
+
+It is a blue print of an object.
+
+We can declare a class as follow.
+
+syntax:
+	optional 
+	|
+	modifier class class_name <extends> Parent_class
+			          <implements> Interface_name 
+	{
+		-
+		- // variables & methods
+		-
+	}
+A class will accept following modifiers.
+ex:
+	default
+	public
+	final
+	abstract 
+
+Q)What is the difference between default class and public class?
+
+default class
+------------
+If we declare any class as default then we can access that class within the package.
+
+ex:
+	class A 
+	{
+		-
+		-
+	}
+
+public class
+-----------
+If we declare any class as public then we can access that class within the package and outside of the package.
+
+ex:
+	public class A 
+	{
+		-
+		-
+	}
+
+
+Q)What is final class?
+
+If we declare any class as final creating child class is not possible.
+
+or
+
+If we declare any class as final then extending someother class is not possible.
+
+ex:
+	final class A 
+	{
+	
+	}
+	class B extends A  // invalid 
+	{
+	}
+
+
+Q)What is abstract class?
+
+If we declare any class as abstract then creating object for that class is not possible.
+ex:
+	abstract class A 
+	{
+		-
+		-
+	}
+	A a=new A(); //invalid 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

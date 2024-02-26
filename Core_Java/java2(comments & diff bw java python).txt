@@ -1,0 +1,113 @@
+Comments in java
+=================
+Comments are created for documentation purpose.
+
+Comments are used to improve readability of our code.
+
+It is highly recommanded to use comments in our regular programming.
+
+Comments will not display in output because our compiler does not compile the comments.
+
+In java we have two types of comments.
+
+1)Single Line Comment
+-------------------
+	It is used to comment a single line.
+	ex:
+		// comment here 
+
+2)Multiple Line Comment 
+------------------------
+	It is used to comment multiple lines.
+	ex:
+		/*
+			-
+			- comment here 
+			-
+		*/
+
+ex:
+----
+//class declaration 
+class  Test
+{
+	//main method	
+	public static void main(String[] args)
+	{
+
+		//variable declaration 
+		int i=10;	
+
+		//output statement
+		System.out.println(i);
+	}
+}
+
+
+Q)Differences between python and java?
+
+Python					Java
+--------				--------
+It is developed by Guido Van Rossum.	It is developed by James Gosling.
+
+It is a product of Microsoft.		It is a product of Oracle Corporation.
+
+It is a scripting language.		It is object oriented programming 
+					language.
+
+It is a interpreted language.		It is a compiled language.
+
+It contains PVM.			It contains JVM.
+
+It is a dynamically typed language.	It is a statically typed language.
+
+Performance is low.			Performance is high.
+
+There is low security.			There is high security.
+
+It contains less code.			It contains more code.
+
+IT companies 
+-------------
+We have two types of IT companies.
+
+1)Service Based company
+
+	ex:
+		TCS
+		Capgemini
+		Cognizent
+		and etc.
+
+2)Product Based company 
+
+	ex:
+		Microsoft
+		Oracle Corporation
+		IBM
+		Amazon
+		and etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

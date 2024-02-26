@@ -1,0 +1,177 @@
+Servlets
+=========
+
+Web application
+================
+A web application is a collection of web resource programs having the capability to generate web pages.
+
+We have two types of web pages.
+
+1)static web page / passive web page 
+------------------------------------
+If a content not change for a web page is called static web page.
+ex:
+	facebook login page 
+	home page 
+	contactus page
+	services page 
+	and etc
+
+2)Dynamic web page / active web page 
+-----------------------------------
+If a content change for a web page is called dynamic web page.
+ex:
+	live cricket score page
+	stock market share value page 
+	gmail inbox page
+	and etc 
+
+We have two types of web resource programs.
+
+1)Static web resource program 
+-----------------------------
+It is used to generate static web pages.
+ex:
+	html program
+	css program
+	bootstrap program
+	reactjs program
+	angularjs program
+	and etc.
+
+2)Dynamic web resource program
+-------------------------------
+It is used to generate dynamic web pages.
+ex:
+	servlet program
+	jsp program 
+	and etc.
+
+Based onthe position and execution these web resource programs are dividedi into two types.
+
+1)Client side web resource program
+-----------------------------
+A web resource program which executes at client side(browser window) is called client side web resource program.
+
+All static web resource programs are called client side web resource program.
+
+
+2)Server side web resource program
+----------------------------------
+A web resource program which executes at server side is called server side web resource program.
+
+All dynamic web resource programs are called server side web resource program.
+
+Web application and web resource program execution 
+===================================================
+Diagram: servlet1.1
+
+Java application will execute manually.
+
+Web application and web resource program will execute at the time when they have requested.So there is no way to execute them manually.
+
+With respect to the diagram:
+
+1) Enduser will give the request to web resource program.
+
+2) Web server will trap that request and passes that request to appropriate 
+   web resource program.
+
+3) Web resource program will execute the logic to process the request.
+
+4) Web resource program will communicate with database software if neccessary.
+
+5) Web resource program sends the output to web server.
+
+6) Web server will give output to browser window as dynamic response. 
+
+Note:
+----
+The process of keeping the web application in a server is called deployment and reverse is called undeployment.
+
+Web Server 
+============
+A web server is a piece of software which is used to automate whole process of web application and web resource program execution.
+ex:
+	Tomcat , Resin and etc.
+
+Responsibilities of web server
+--------------------------------
+> It takes continues request from client.
+
+> It passes the request to appropriate web resource program.
+
+> It provides environment to deploy and undeploy the web applications.
+
+> It will add middleware services only to deployed web applications.
+
+> It provides environment to execute client side web resource programs at 
+  browser window.
+
+> It is used to automate whole process of web application and web resource 
+  program executions.
+
+> Web server will send the output to browser window as dynamic web page.
+
+Web container
+=============
+It is a software application or a program which is use manage whole life cycle of web resource program from birth to death.
+
+Servlet container manage whole life cycle of servlet program.
+
+JSP container manage whole life cycle of jsp program.
+
+some part of industry consider servlet container and jsp container are web containers.
+
+Every server is designed to support servlet container and jsp container so we don't need to arrange them seperately.
+
+Tomcat 
+=======
+version		: 7.x 
+
+Creator		: James Duncan Davidson
+
+Vendor		: Apache software foundation 
+
+Port No		: 8080 
+
+website		: www.apache.org
+
+servlet container : Catalina 
+
+Jsp container   : Jasper 
+
+Download  	:
+https://drive.google.com/file/d/0B9rC21sL6v0tZFdVcmxZUDA0Tms/view?usp=drive_link&resourcekey=0-VXlB_IpeWqDWwdbr1baCyA
+
+Tomcat install will ask following things.
+
+1) Http Connector Port No 
+
+2) Adminstrator username and password
+
+3) JRE location (parallel to JDK)
+
+4) Tomcat Installation location 
+
+Tomcat is a not a container.It is a server containing servlet container and jsp container.
+
+Before 6.x version tomcat is known as web server.From 6.x version onwards tomcat is also known as application server.
+
+Installation of tomcat server
+------------------------------
+Right click to tomcat software --> yes ---> Next --> I Agree --> select Full -->
+---> Next ---> 
+
+Http connector port : 2525
+
+adminstrative username : admin
+	      password : admin   
+
+--> next --> Next --> Install. 
+
+
+Keeping Tomcat server from automatic mode to manual mode
+========================================================
+services (view local services) --> select Apache Tomcat --> click to stop link -->
+double click to Apache tomcat --> startup type: manual -->Apply -->ok.

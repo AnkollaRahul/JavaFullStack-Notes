@@ -1,0 +1,259 @@
+RestController:
+================
+RestController is used for making restful web services with the help of the @RestController annotation. 
+
+This annotation is used at the class level and allows the class to handle the requests made by the client.
+
+The main difference between the @RestController and the @Controller is that the @Restcontroller 
+is a combination of the @controller and @ResponseBody annotation.
+
+We have following HTTP methods along with rest annotations.
+
+HTTP Methods 			Annotations 
+------------			-------------
+GET				@GetMapping
+POST				@PostMapping
+PUT				@PutMapping
+Delete				@DeleteMapping
+and etc.
+
+
+Spring Boot Application using @RestController
+===============================================
+
+Project structure
+--------------------
+RestApp
+|
+|----src/main/java
+|	|
+|	|----com.ihub.www
+|		|
+|		|--RestAppApplication.java
+|		|--HomeController.java
+|---src/main/resources
+|	|
+|	|-----application.properties
+|
+|---src/test/java
+|	|
+|	|-----RestAppApplicationTests.java
+|
+| --
+| --
+| --
+
+|---pom.xml
+|
+|
+
+
+step1:
+-------
+	Create a spring starter project.
+	ex:
+		File --> new --> spring starter project --> 
+				Name : RestApp
+				Group: com.ihub.www
+				Artifact: RestApp
+				Description: This is Spring Boot Application
+				package : com.ihub.www  ---> next -->
+				Starter: Spring Web --> next --> Finish.
+
+
+step2:
+------
+	create a HomeController class inside "src/main/java".
+	ex:
+	Right click to package(com.ihub.www) --> new --> 
+	class --> Class: HomeController -->finish.
+
+
+step3:
+-------
+	Add @Controller annotation and "@RequestMapping" annotation inside HomeController class.
+
+HomeController.java
+---------------------
+package com.ihub.www;
+
+import org.springframework.stereotype.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RestController
+public class HomeController {
+
+	@GetMapping("/")
+	public String home()
+	{
+		return "Rest Controll Example";
+	}
+}
+	
+
+step4:
+---------
+	create "index.jsp" file inside "src/main/webapp/pages/" folder.
+	ex:
+		Right click to pages folder--> new --> file ---> 
+		File Name: index.jsp --> finish.
+
+
+
+step5:
+------
+	Configure tomcat server port number and jsp file.
+
+application.properties
+------------------------
+server.port=9191
+
+
+step6:
+-------
+	Run Spring Boot application.
+	ex:
+		Right click to RestApp --> run as --> spring boot application.
+
+
+step7:
+------
+	Test the application with below request url.
+	ex:
+		http://localhost:9191/
+
+
+
+
+
+Q)Difference between Monolethic Architecture vs Microservice  Architecture?
+
+
+Monolithic Architecture
+=======================
+Monolith means composed all in one piece.
+
+The Monolithic application describes a single-tiered software application in which different
+components combined into a single program from a single platform.
+
+In Monolithic Architecture we are developing every service individually and at end of the
+development we are packaging all services as single war file and deploying in a server.
+
+Lets take an example of E-commerce website where we have basic and common option of Customer 
+Service, Product Service and Cart Service, which a customer can access through browser.When we 
+launch the application It is deployed as a single monolithic application.It means we will have 
+only one single instance. 
+
+Diagram: sb4.1
+
+Advantages
+===========
+1)Simple to develop
+-----------------
+	 At the beginning of a project it is much easier to go with Monolithic Architecture.
+
+2)Simple to test
+--------------
+	we can implement end-to-end testing by simply launching the application and testing 
+	the UI with Selenium.
+
+3)Simple to deploy
+---------------
+	 we have to copy the packaged application(war file) to a server.
+
+4)Simple to scale
+------------------
+	Simple to scale horizontally by running multiple copies behind a load balancer.
+
+
+Drawbacks of Monolithic Architecture
+==================================
+1)Large and Complex Application
+-------------------------------
+	It increase the size of the applications.
+
+	It become complex to understand and modify such applications.
+
+	As result development slows down and modularity breaks down over the time.
+
+	Moreever it is difficult to understand how to currently implement the change due to that
+	quality of code will decline over the time.	
+
+2)Slow Development
+--------------------
+	As application and respective teams grows.The application really become difficult to 
+	understand and modify.
+
+	Due to large base code which leads to slower the IDE which makes programmers less 
+	productive.
+	
+3)Blocks Continenous development
+------------------------------
+	In order to update one component/service.we need to re-deploy the entire application
+	which interrupts the background.
+
+	There is also a chance ,the components which never have been updated failed to 
+	start correctly.As result risk associated with redeployment increases which discourage the 
+	continueous development.   		 	
+
+4)Unscalable
+-------------
+	We can't create instances for a perticular service.
+	we need to create instance for entire services present in a monolithic application.
+
+5)Unreliable
+---------------
+	Every service/component in monolethic application is tightly coupled.
+	If any one of the service/component goes down the entire system failed to run. 
+	
+	Moreever,A bug in any component/service potentially bring down entire process.
+
+6)Inflexible
+------------
+	It is very difficult to adopt new frameworks and languages.
+	ex:
+	Microservices can't communicate each other.If they written in different languages. 		
+	
+
+MicroService Architecture
+==============================
+Microservices are the small services that work together
+
+The microservice defines an approach to the architecture that divides an application into 
+a pool of loosely coupled services that implements business requirements. 
+
+In Microservice architecture,Each service is self contained and implements a single bussiness 
+capability.
+
+The microservice architectural style is an approach to develop a single application
+as a suite of small services.It is next to Service-Oriented Architecture (SOA). 
+
+Each microservice runs its process and communicates with lightweight mechanisms.
+
+These services are built around business capabilities and independently developed by 
+fully automated deployment machinery.
+
+
+Advantages of Microservice Architecture
+======================================
+1)Independent Development
+------------------------
+	Each microservice can be developed independently.
+	A single development team can build test and deploy the service.
+	
+2)Independent Deployment
+------------------------
+	we can update the service without redeploying the entire application.
+	Bug release is more managable and less risky.
+
+3)Fault Tolerance
+------------------
+	If service goes down ,It won't take entire application down with it.
+
+4)Mixed Technology Stack
+---------------------
+	It is used to pick best technology which best suitable for our application.	
+
+5)Granular Scaling
+-----------------
+	In Granular scaling ,services can scaled independently.Instead of entire application.

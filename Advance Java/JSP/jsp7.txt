@@ -1,0 +1,190 @@
+Maven 
+=======
+Maven is a project building management tool.
+
+Maven contains POM.xml file.
+
+Here POM stands for Project Object Model.
+
+A pom.xml file contains dependencies , goals , descriptors and etc.
+
+Steps to develop Maven project
+------------------------------
+step1:
+-----
+	Launch eclipse IDE by choosing workspace location.
+
+step2:
+-----	
+	create a dynamic web project.
+	ex:	
+		File --> new --> dynamic project --> Name : MavenProj
+		---> Next --> Next --> generate web.xml file --> finish.
+
+step3:
+-----
+	Convert dynamic web project to Maven project.
+	ex:
+		Right click to dynamic project --> configure -->
+		convert to maven project --> 
+		Group ID : com.ihub.www
+		Artifact ID : MavenProj
+		Name : MavenProj
+		Description: Demostration on Maven project --> finish.
+
+step4:
+------
+	Create a "ABC.jsp" file inside "Web Content" folder.
+	ex:
+	ABC.jsp
+	-------
+	<center>
+		<h1>
+			This is Maven Project Demo
+		</h1>
+	</center>
+		
+step5:
+-----
+	Add "servlet-api.jar" file manven depedency inside pom.xml file.
+	ex:
+	pom.xml
+	------
+	-
+	-
+	 <dependencies>
+  		<dependency>
+    			<groupId>javax.servlet</groupId>
+    			<artifactId>servlet-api</artifactId>
+    			<version>2.5</version>
+    			<scope>provided</scope>
+		</dependency>
+  	</dependencies>
+	<build>
+	--
+	--
+	--
+
+step6:
+-----
+	Run the maven project.
+	ex:
+		Right click to MavenProject --> run as --> run on server.
+		
+step7:
+------
+	Test the application by using below request url.
+	ex:
+		http://localhost:2525/MavenProj/ABC.jsp
+
+
+How to convert Maven project or Dynamic project to war file
+===========================================================
+step1:
+------
+	Make sure Dynamic or Maven project is ready in eclipse IDE.
+
+
+step2:
+----
+	convert Dynamic or Maven project to war file .
+	ex:
+		Right click to MavenProj --> export --> war file -->
+		Destination : Desktop(choose) --> open --> finish.
+
+
+
+
+
+
+GIT/GITHUB
+================
+
+Q) Difference between GIT vs GITHUB ?
+
+
+GIT						GITHUB
+--------					---------
+It is distributed version control system	It is a web-based hosting 
+to track changes of each file in a project.	service for git.
+
+It contains local repository.			It contains remote repository.
+
+It is command line tool.			It is GUI.
+
+It is locally installed.			It is hosted on web.
+
+
+
+
+Q)Types of stages of Git?
+
+We have three stages in git.
+
+Working Directory : 
+----------------------------
+	the file exists, but is not part of git's version control.
+
+staging area: 
+--------------------
+	the file has been added to git's version control but changes 
+	have not been committed
+
+Repository: 
+------------
+	the change has been committed 
+
+Diagram: git
+
+
+
+Remote repository github
+==========================
+	https://github.com/NiyazulHasan/practice
+
+
+
+Q)Write a git command to initialized empty repository?
+
+	git init
+
+
+Q)Write a git command to check the status? 
+
+	git status 
+
+Q)Write a git command to check the branch?
+
+	git branch 
+
+
+Q)Write a git command to add remote repository?
+
+	git remote add origin https://github.com/NiyazulHasan/practice
+
+
+Q)Write a git command to check the remote repository
+
+	git remote -v 
+
+Q)Write a git command to commit the changes?
+
+	git commit -m "comment here"
+
+
+Q)Write a git command to push the code to remote origin?
+	
+	git push -f origin main 
+
+
+Q)Write a git command to clone the project?
+
+	git clone <url>
+
+Q)Write a git command to pull request?
+
+	git pull <url>
+
+Q)Write a git command to move from master branch to main branch?
+
+	git branch --move master main

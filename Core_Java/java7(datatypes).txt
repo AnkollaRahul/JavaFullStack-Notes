@@ -1,0 +1,238 @@
+Datatypes
+=========
+Datatype describes what type of value we want to store inside a variable.
+
+Datatype also tells how much memory has to be created for a variable.
+
+In java datatypes are divided into two types.
+
+Diagram: java7.1
+
+byte
+------
+It is a smallest datatype in java.
+
+Size: 1 byte (8 bits)
+
+Range: -128 to 127 (-2^7 to 2^7-1)
+
+ex:
+	1) byte b=10;
+           System.out.println(b); // 10
+
+	2) byte b=130;
+           System.out.println(b); // C.T.E 
+
+	3) byte b=10.5;
+	   System.out.println(b); // C.T.E 
+
+short
+--------
+It is rarely used datatype in java.
+
+Size: 2 bytes (16 bits)
+
+Range : -32768 to 32767 (-2^15 to 2^15-1)
+
+ex:
+	1) byte b=100;
+           short s=b;
+           System.out.println(s); // 100 
+
+	2) short s="hi";
+           System.out.println(s); // C.T.E 
+
+	3) short s=true;
+           System.out.println(s); // C.T.E 
+
+int
+-----
+It is mostly used datatype in java.
+
+Size: 4 bytes (32 bits)
+
+Range: -2147483648 to 2147483647 (-2^31 to 2^31-1)
+
+ex:
+	1) int i=10.5;
+           System.out.println(i); // C.T.E 
+
+	2) int i="false";
+           System.out.println(i); // C.T.E 
+
+	3) int i=true;
+           System.out.println(i); // C.T.E 
+
+	4) int i='a';
+           System.out.println(i); // 97 
+
+Note:
+-----
+In java for every character we have universal unicode value.
+ex:
+	A ---- 65 
+	a ---- 97 
+
+
+long 
+------
+If int datatype is not enough to hold large value then we need to use long datatype.
+
+Size: 8 bytes (64 bits)
+
+Range: (-2^63 to 2^63-1)
+
+ex:
+	1) long l=10.5;
+	   System.out.println(l); // C.T.E 
+
+	2) long l=true;
+           System.out.println(l); // C.T.E 
+
+	3) long l="hi";
+           System.out.println(l); // C.T.E 
+
+	4) long l=10;
+           System.out.println(l); //10
+
+	5) long l='A';
+           System.out.println(l); // 65
+
+float					double
+-----------				-----------
+If we depend upon 4 to 6 decimal point	If we depend upon 14 to 16 decimal
+of accuracy then we need to float.	point of accuracy then we need to use
+					double.
+
+Size: 4 bytes (32 bits)			Size: 8 bytes (64 bits)
+
+Range: -3.4e38 to 3.4e38		Range: -1.7e308 to 1.7e308
+
+To represent float value we need to 	To represent double value we need 
+suffix with 'f'.			to suffix with 'd'.
+ex:					ex:
+	10.5f					10.5d
+
+ex:
+	1) float f=10.5f;
+           System.out.println(f); // 10.5
+
+	2) float f=10;
+           System.out.println(f); // 10.0
+
+	3) float f='a';
+           System.out.println(f); //97.0
+
+ex:
+	1) double d=10.5d;
+           System.out.println(d); // 10.5
+
+	2) double d=10;
+           System.out.println(d); // 10.0
+
+	3) double d='A';
+           System.out.println(d); //65.0
+
+boolean 
+---------
+It is used to represent boolean values either true or false.
+
+Size :  (Not Applicable - 1 bit)
+
+Range : (Not Applicable)
+
+ex:
+	1) boolean b="false";
+	   System.out.println(b); // C.T.E 
+
+	2) boolean b=TRUE;
+           System.out.println(b); // C.T.E 
+
+	3) boolean b=true;
+           System.out.println(b) // true 
+
+char
+------
+It will take single character which is enclosed in a single quotation.
+
+Size : 2 bytes (16 bits)
+
+Range : 0 to 65535
+
+ex:
+	1) char c='a';
+           System.out.println(c); // a 
+
+	2) char c=65;
+           System.out.println(c); // A
+
+	3) char c="a";
+           System.out.println(c); // C.T.E 
+
+Diagram: java7.2
+
+ 
+Q)Write a java console to display the range of byte datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Byte.MIN_VALUE);
+		System.out.println(Byte.MAX_VALUE);
+	}
+}
+
+Q)Write a java console to display the range of int datatype?
+
+class Test
+{
+	public static void main(String[] args)
+	{
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Integer.MAX_VALUE);
+	}
+}
+
+Q)Is java purely object oriented or not? 
+
+No, Java will not consider as purely object oriented programming language because it does not support many OOPS concepts like multiple inheritance, operator overloading and more ever we depends upon primitive datatypes which are non-objects. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

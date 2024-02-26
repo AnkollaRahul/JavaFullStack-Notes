@@ -1,0 +1,289 @@
+2) Multiple row sub query
+=========================
+If a sub query returns more then one row is called multiple row sub query.
+
+To perform multiple row sub query we need to use multiple row operators.
+
+We have three types of multiple row operators.
+
+1) ANY
+
+2) ALL
+
+3) IN 
+
+1) ANY
+------
+	select * from emp where esal> ANY(select esal from emp where deptno=10);
+
+	select * from emp where esal< ANY(select esal from emp where deptno=10);
+
+
+2) ALL
+------
+	select * from emp where esal> ALL(select esal from emp where deptno=10);
+
+
+3) IN
+-----
+	select * from emp where esal IN (select esal from emp where deptno=10);	
+
+
+	select * from emp where NOT esal IN (select esal from emp where deptno=10);		
+
+
+3) Multiple column subquery
+============================
+If a sub query returns more then one column is called multiple column sub query.
+
+In multiple column sub query we need to use IN operator.
+
+ex:
+	select * from emp where(eid,ename,esal) IN (select eid,ename,esal from emp where eid=201);
+
+
+	select eid,ename,esal from emp where(eid,ename,esal) 
+	IN (select eid,ename,esal from emp where eid=201);
+
+	select eid,ename,esal from emp where(eid,ename,esal) 
+	IN (select eid,ename,esal from emp);	
+
+
+PL/SQL
+=======
+PL/SQL stands for Procedural and Structured Query Language.
+
+It is a extension of SQL and having following features.
+
+1) We can achieve programming features like control statements, LOOPS and etc.
+
+2) It will reduce network traffic.
+
+3) We can display our error messages by using the concept of exception handling.
+
+4) We can perform related operations by using the concept of triggers.
+
+5) It will compile and store PL/SQL program permanent to database for repeated execution.
+
+
+PL/SQL block
+============
+A PL/SQL program is also known as PL/SQL block.
+
+syntax:
+-------
+	DECLARE 
+	-
+	-	-- Declaration section
+	-
+	BEGIN
+	-
+	-	-- Executable section
+	-
+	EXCEPTION
+	-
+	-	-- Exception section 
+	-
+	END;
+	/
+
+Declaration section
+--------------------
+A declaration section is used to declare variables, exceptions , cursors and etc.
+It is optional section.
+
+Executable section
+-----------------
+A executable section contains lines of code which are used to complete a table.
+It is a mandatory section. 
+
+Exception section 
+-----------------
+A exception section contains lines of code which are executed when exception is raised.
+It is a optional section.
+
+To see the output in PL/SQL we need to use below command.
+ex:
+	SQL> set    serveroutput  on
+
+Q)Write a PL/SQL program to display Hello World?
+
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Hello World');
+END;
+/
+
+Here DBMS_OUTPUT is a package name.
+Here PUT_LINE is a procedure name.
+Here '/' is used to submit the PL/SQL block into database.
+
+
+Q) Write a PL/SQL program to perform sum of two numbers?
+
+DECLARE 
+A number;
+B number;
+C number;
+BEGIN
+A := 10;
+B := 20;
+C := A+B;
+DBMS_OUTPUT.PUT_LINE(C);
+END;
+/
+
+Declaration and Initialization using single line.
+
+ex:
+
+DECLARE 
+A number:=10;
+B number:=20;
+C number:=A+B;
+BEGIN
+DBMS_OUTPUT.PUT_LINE(C);
+END;
+/
+
+Using '&' symbol we can provide dynamic values.
+
+ex:
+
+DECLARE
+A number;
+B number;
+C number;
+BEGIN
+A := &a;
+B := &b;
+C := A+B;
+DBMS_OUTPUT.PUT_LINE('sum of two numbers is ='||C);
+END;
+/
+
+In PL/SQL , DML operations are allowed.
+
+ex:
+
+DECLARE 
+L_Sno number(3);
+L_Sname varchar2(10);
+L_Sadd varchar2(12);
+BEGIN
+L_Sno := &sno;
+L_Sname := '&sname';
+L_Sadd := '&sadd';
+insert into student values(L_Sno,L_Sname,L_Sadd);
+DBMS_OUTPUT.PUT_LINE('Record Inserted');
+END;
+/
+
+
+Q)Write a PL/SQL program to accept student number and update student name ?
+
+DECLARE 
+L_Sno number(3);
+BEGIN
+L_Sno := &sno;
+update student set sname='rani' where sno=L_Sno;
+DBMS_OUTPUT.PUT_LINE('Record Updated');
+END;
+/
+
+
+Q) Write a PL/SQL program to accept student number and delete the record?
+
+DECLARE 
+L_Sno number(3);
+BEGIN
+L_Sno := &sno;
+delete from student where sno=L_Sno;
+DBMS_OUTPUT.PUT_LINE('Record Deleted');
+END;
+/
+
+In PL/SQL , DRL operations are allowed.
+
+If we perform select command in PL/SQL then we need to use "into" clause.
+
+
+Q) Write a PL/SQL program to display employee name whose employee id is 201?
+
+DECLARE 
+L_Ename varchar2(10);
+BEGIN
+select ename into L_Ename from emp where eid=201;
+DBMS_OUTPUT.PUT_LINE(L_Ename);
+END;
+/
+
+
+Q) Write a PL/SQL program to display employee name, employee salary based on employee id?
+
+DECLARE 
+L_Eid  number(3);
+L_Ename varchar2(10);
+L_Esal number(10,2);
+BEGIN
+L_Eid := &eid;
+select ename,esal into L_Ename,L_Esal from emp where eid=L_Eid;
+DBMS_OUTPUT.PUT_LINE(L_Ename||' '||L_Esal);
+END;
+/
+
+Percentage(%) TYPE Attribute
+=============================
+It is used to declare a local variable with respect to a column type.
+
+syntax:
+	variable_name   table_name.column_name%TYPE;
+
+Q) Write a PL/SQL program to display employee name, employee salary based on employee id?
+
+DECLARE 
+L_Eid  emp.eid%TYPE;
+L_Ename emp.ename%TYPE;
+L_Esal  emp.esal%TYPE;
+BEGIN
+L_Eid := &eid;
+select ename,esal into L_Ename,L_Esal from emp where eid=L_Eid;
+DBMS_OUTPUT.PUT_LINE(L_Ename||' '||L_Esal);
+END;
+/
+
+
+Percentage(&) ROWTYPE attribute
+===============================
+It is used to declare a local variable which holds complete row a table.
+
+ROWTYPE variable can't display directly.
+
+We can access ROWTYPE variables values by using variable_name.column_name.
+
+syntax:
+	variable_name   table_name%ROWTYPE;
+
+
+
+Q)Write a PL/SQL to display employee information whose employee id is 205?
+
+DECLARE 
+A  emp%ROWTYPE;
+BEGIN
+select * into A from emp where eid=205;
+DBMS_OUTPUT.PUT_LINE(A.eid||' '||A.ename||' '||A.esal||' '||A.deptno||' '||A.comm||' '||A.job);
+END;
+/
+		 
+
+Q)Write a PL/SQL to display employee information based on employee id?
+
+DECLARE 
+L_Eid emp.eid%TYPE;
+A  emp%ROWTYPE;
+BEGIN
+L_Eid := &eid;
+select * into A from emp where eid=L_Eid;
+DBMS_OUTPUT.PUT_LINE(A.eid||' '||A.ename||' '||A.esal||' '||A.deptno||' '||A.comm||' '||A.job);
+END;
+/

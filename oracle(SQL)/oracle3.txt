@@ -1,0 +1,323 @@
+Between operator
+================
+Between operator will return the records those who are in the range of values.
+
+Between operator will take the support of AND operator.
+
+In Between operator first we need to declare lower limit then higher limit.
+
+ex:
+	select * from emp where eid between 201 AND 206;
+
+	select * from emp where eid between 206 AND 201; // no rows selected
+
+	select * from emp where esal between 15000 AND 30000;
+
+	select eid,ename,esal from emp where deptno between 10 AND 30;
+
+
+IN operator
+===========
+IN operator is a replacement of OR operator.
+
+It will return the values those who are matching in the list of values.
+
+ex:
+	select * from emp where eid IN(201,202,203);
+
+	select * from emp where deptno IN(10,20,30);
+
+	select * from emp where ename IN ('Alan','Jose','Nelson');
+
+
+Pattern Matching operators
+===========================
+Pattern matching operators are used to select the letters from database table.
+
+Pattern matching operators will take the support of like keyword.
+
+We have two types of pattern matching operators.
+
+1) Percentage(%) 
+
+2) Underscore(_) 
+
+1) Percentage(%) 
+----------------
+Q)Write a query to display employee information whose employee name starts with 'A' letter?
+
+	select * from emp where ename like 'A%';
+
+
+
+Q)Write a query to display employee information whose employee name ends with 'n' letter?
+
+	select * from emp where ename like '%n';
+
+
+Q)Write a query to display employee information whose employee name having 'l' as middle letter?
+
+	select * from emp where ename like '%l%';
+
+2) Underscore(_) 
+-----------------
+
+Q) Write a query to display employee information whose employee name having 
+   second letter as 'l' letter?
+
+	select * from emp where ename like '_l%';
+
+
+Q)Write a query to display employee information whose employee name having 
+  second last letter as 'd'?
+
+	select * from emp where ename like '%d_';
+
+
+Q)Write a query to display employee information whose employee name having 
+third letter as 'a'?
+
+	select * from emp where ename like '__a%';
+
+
+Duplicate table or Copy of a table
+==================================
+Creating a duplicate table or copy of a table is a save side for the programmer because if something goes wrong we can recover that situation using duplicate table or copy of a table.
+
+Using create and select command we can create duplicate table.
+
+ex:
+---
+	create table stud as select * from student;
+
+	create table employee as select * from emp;
+
+	create table employee as select eid,ename,esal from emp;
+
+	create table employee as select * from emp where deptno=10;
+
+	create table employee as select * from emp where deptno<>10;
+
+	create table employee as select * from emp eid IN(201,202,203);
+
+	create table employee as select * from emp esal between 15000 AND 30000;
+
+	create table employee as select * from emp name like 'A%';
+
+cl scr
+=======
+It is used to clear the output screen of SQL command prompt.
+
+syntax:
+	cl scr
+
+DDL commands
+============
+create - (tables)
+alter  - (columns)
+drop   - (tables)
+truncate - (rows/records)
+rename - (tables)
+
+alter command
+=============
+Using alter command we can perform following activities very easily.
+
+i) Adding the new columns
+
+ii) Modifying the exiting columns 
+
+iii) Renaming the columns
+
+iv) Droping the columns
+
+i) Adding the new columns
+--------------------------
+Using alter command we can add new columns to a existing table.
+
+syntax:
+-----
+	alter table <table_name> ADD (col datatype(size));
+
+ex:
+	alter table student ADD (state varchar2(10));
+	alter table student ADD (pincode number(8));
+	alter table student ADD (state varchar2(10), pincode number(8));
+
+	update student set state='Telangana' where sno=101;
+
+ii) Modifying the exiting columns 
+------------------------------
+Using alter command we can modify the existing columns.
+
+We can change size of a column only when existing values are fit into new size.
+
+ex:
+	desc  student;
+
+	alter table student MODIFY (state varchar2(12));
+	
+	desc student;
+
+We can change the datatype of a column only if that column is empty.
+
+ex:
+---
+	desc student;
+
+	alter table student MODIFY (pincode varchar2(8));
+
+	desc student;
+
+iii) Renaming a columns 
+------------------------
+Using alter command we can rename a column name.
+
+syntax:
+	alter table <table_name> RENAME column <old_name> to <new_name>
+
+ex:
+	alter table student RENAME  column  pincode to country;
+
+	alter table student RENAME  column  sadd to city;
+
+	alter table emp RENAME  column  esal to dailywages;
+
+	alter table emp RENAME  column  job to designation;
+
+
+iv)dropping the columns
+------------------------
+Using alter command we can drop the columns.
+
+syntax:
+	alter table <table_name> DROP (col1,col2,..,colN);
+ex:
+	alter table student DROP (state,country);
+
+drop  command
+=============
+It is used to drop the tables from database.
+
+syntax:
+	drop table <table_name>;
+ex:
+	drop table student;
+	drop table emp;
+	drop table dept;
+
+truncate command
+==================
+A trunate command is used to delete the records permanently from database table.
+
+syntax:
+	truncate table <table_name>;
+ex:
+	truncate table emp;
+	truncate table student;
+	truncate table dept;
+
+Q) What is the difference between delete and truncate command?
+
+delete					truncate 
+----------				----------
+It will delete the records temperory.	It will delete the records permanently.
+
+We can rollback the data.		We can't rollback the data.
+
+Where clause can be used.		Where clause can't be used.
+
+It is a DML command.			It is a DDL command.
+
+
+rename command
+==============
+It is used to rename the table name.
+
+syntax:
+	rename  <old_name> to <new_name>;
+
+ex:
+	rename emp to employee;
+
+	rename student to students;
+	
+	rename dept to department; 
+
+
+Functions
+==========
+Functions are used to manipulate the data items and give the result.
+
+We have two types of functions.
+
+1) Group Functions / Multiple Rows Functions 
+
+2) Scalar Functions / Single Rows Functions 
+
+1) Group Functions
+-------------------
+Group functions are applicable for multiple rows.
+
+We have following list of group functions.
+
+ex:
+	sum(), avg(), max(), min(), count(*) and count(express). 
+
+
+Q) Write a query to display sum of salary of each employee?
+
+	select sum(esal) from emp;
+
+Q) Write a query to display average salary of each employee?
+
+	select avg(esal) from emp;	
+
+Q) Write a query to display highest salary from employee table?
+
+	select max(esal) from emp;
+
+Q) Write a query to display least/lowest salary from employee table?
+
+	select min(esal) from emp;
+
+
+Q)What is the difference between count(*) and count(exp)? 
+
+count(*)
+--------
+	It will return number of records present in database table.
+
+	It will include null records.
+ 
+	ex:
+		select count(*) from emp;
+
+count(exp)
+---------
+	It will return number of values present in a column.
+
+	It will not include null values.
+	
+	ex:
+		select count(eid) from emp;
+	
+		select count(comm) from emp;
+
+Userlist table
+===============
+drop table userlist;
+
+create table userlist(uname varchar2(10),pwd varchar2(10));
+
+insert into userlist values('raja','rani');
+
+insert into userlist values('king','kingdom');
+
+commit;
+
+Q) Write a query to check username and password is valid or not?
+
+	select count(*) from userlist where uname='raja' AND pwd='rani'; // 1 
+
+	select count(*) from userlist where uname='raja' AND pwd='rani2'; // 0 

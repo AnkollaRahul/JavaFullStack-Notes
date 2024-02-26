@@ -1,0 +1,403 @@
+object
+=======
+It is a instance of a class.
+
+Allocating memory for our data members is called instance.
+
+Object is a outcome of a blue print.
+
+Memory space will be created when we create an object.
+
+We can declare object as follow.
+
+syntax:
+	class_name  reference_variable=new constructor();
+ex:
+	Test  t = new Test();
+
+It is possible to declare more then one object in a single class.
+
+ex:
+----
+
+class Test  
+{
+	public static void main(String[] args) 
+	{
+		Test t1=new Test();
+		Test t2=new Test();
+		Test t3=new Test();
+		System.out.println(t1.hashCode());
+		System.out.println(t2.hashCode());
+		System.out.println(t3.hashCode());
+
+		System.out.println(t1); //Test@Hexavalue 
+		System.out.println(t2.toString());
+		System.out.println(t3.toString()); 
+	}
+}
+
+hashCode()
+============
+A hashCode() method present in Object class.
+
+For every object , JVM will create a unique identification number i.e hash code.
+
+In order to read hash code of an object we need to use hashCode() method.
+
+Diagram: java23.1
+
+
+toString()
+============
+A toString() method present in Object class.
+
+Whenever we are trying to display any object reference directly or indirectly toString() method will be executed.
+
+
+Object class
+=============
+Object is a class which is present in java.lang package.
+
+It is a parent class for every java class.
+
+Object class contains following methods.
+
+ex:
+	cmd> javap  java.lang.Object 
+
+		hashCode()
+		notify()
+		notifyAll()
+		getClass()
+		toString()
+		equals()
+		and etc.
+	
+
+Data Hiding
+==============
+Our internal data should not go out directly.
+
+It means outside person must not access our data directly.
+
+Using private mmodifier we can achieve data hiding concept.
+
+The main objective of data hiding is to provide security.
+
+ex:
+	class Account
+	{
+		private double balance;
+		-
+		-	
+	}
+
+
+Abstraction
+===========
+Hiding internal implementation and highlighting the set of services is called abstraction.
+
+Using abstract classes and interfaces we can implement Abstraction.
+
+Best example of abstraction is GUI(Graphical User Interface) ATM machine where bank people will hide internal implementation and highlights the set of services like banking ,withdrawl, mini statement and etc.
+
+The main advantages of abstraction are.
+
+1)It gives security because it will hide internal implementation from the outsider.
+
+2) Enhancement becomes more easy because without effecting enduser they can perform any changes in our internal system.
+
+3) It provides flexibility to the enduser to use the system.
+
+4) It improve maintainability of an application 
+
+Encapsulation
+===============
+The process of encapsulating or grouping variables and it's associate methods in a single entity is called encapsulation.
+
+Diagram: java23.2
+
+A class is said to be encapsulated class if it supports data hiding and abstraction.
+
+In encapsulation,for every variable we need to write setter and getter method.
+
+Diagram: java23.3
+
+The main advantages of encapsulation are
+
+1)It gives security.
+
+2)Enhancement becomes more easy.
+
+3)It provides flexibility to the enduser.
+
+4)It improves maintainability of an application.
+
+The main disadvantage of encapsulation is , it will increase the length of our code and slowdown the execution process.
+
+Approach1
+---------
+class Student 
+{
+	private int studId;
+	private String studName;
+	private double studFee;
+
+	//setter methods
+	public void setStudId(int studId)
+	{
+		this.studId=studId;
+	}
+	public void setStudName(String studName)
+	{
+		this.studName=studName;
+	}
+	public void setStudFee(double studFee)
+	{
+		this.studFee=studFee;
+	}
+
+	//getter methods 
+	public int getStudId()
+	{
+		return studId;
+	}
+	public String getStudName()
+	{
+		return studName;
+	}
+	public double getStudFee()
+	{
+		return studFee;
+	}
+
+	public static void main(String[] args)
+	{
+		Student s=new Student();
+		s.setStudId(101);
+		s.setStudName("Alan");
+		s.setStudFee(1000.0d);
+
+		System.out.println("Student Id :"+s.getStudId());
+		System.out.println("Student Name :"+s.getStudName());
+		System.out.println("Student Fee :"+s.getStudFee());
+
+	}
+}
+
+Approach2
+----------
+class Student 
+{
+	private int studId;
+	private String studName;
+	private double studFee;
+
+	//setter methods
+	public void setStudId(int studId)
+	{
+		this.studId=studId;
+	}
+	public void setStudName(String studName)
+	{
+		this.studName=studName;
+	}
+	public void setStudFee(double studFee)
+	{
+		this.studFee=studFee;
+	}
+
+	//getter methods 
+	public int getStudId()
+	{
+		return studId;
+	}
+	public String getStudName()
+	{
+		return studName;
+	}
+	public double getStudFee()
+	{
+		return studFee;
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		Student s=new Student();
+		s.setStudId(101);
+		s.setStudName("Alan");
+		s.setStudFee(1000.0d);
+
+		System.out.println("Student Id :"+s.getStudId());
+		System.out.println("Student Name :"+s.getStudName());
+		System.out.println("Student Fee :"+s.getStudFee());
+
+	}
+}
+
+Note
+-----
+Abstraction is used to hide the data.
+
+Encapsulation is used to protected the data using access modifiers.
+
+
+Interview Questions
+====================
+Q)What is tightly encapsulated class?
+
+A class is said to be tightly encapsulated class.If all the variables of that class must be private and we don't need to check these variables have setter or getter methods or not.
+
+ex:
+	class A
+	{
+		private int i=10;
+	}
+
+ex:
+	class A 
+	{
+		private int i=10;
+	}
+	class B extends A 
+	{
+		private int j=20;	
+	}
+
+
+Q)What is the difference between POJO class and Java Bean class?
+
+POJO class
+-----------
+POJO stands for Plain Old Java Object.
+
+A class is said to be pojo class if it supports following two properties.
+
+1)All variables must be private.
+
+2)All the variables must have setter and getter methods. 
+
+JavaBean class
+---------------
+A class is said to be java bean class if it supports following four properties.
+
+1) A class should be public.
+
+2) A class should have zero-argument constructor.
+
+3) All variables must be private.
+
+4) All variables must have setter and getter methods.
+
+
+Note:
+-----
+Every java bean class is a pojo class but every pojo class is not a java bean class.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

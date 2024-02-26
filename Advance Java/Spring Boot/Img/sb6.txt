@@ -1,0 +1,283 @@
+Exception Handling in Spring Boot
+==================================
+If we give/pass wrong request to our application then we will get Exception.
+ex:
+	http://localhost:9090/fetch/102
+
+Here '102' record is not available so immediately our controller will throw below exception.
+ex:
+{
+    "timestamp": "2021-02-14T06:24:01.205+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/fetch/102"
+}	
+
+Handling exceptions and errors in APIs and sending the proper response to the client is good for  enterprise applications.
+
+In Spring Boot Exception handling can be performed  by using Controller Advice.
+
+@ControllerAdvice
+-------------------
+The @ControllerAdvice is an annotation is used to to handle the exceptions globally.
+ 
+@ExceptionHandler
+--------------------
+The @ExceptionHandler is an annotation used to handle the specific exceptions and sending the custom responses to the client.
+
+project structure
+------------------
+customer-service
+|
+|----src/main/java
+|	|
+	|---com.ihub.www
+		|
+		|---CustomerServiceApplication.java
+
+	|
+	|---com.ihub.www.controller
+		|
+		|---CustomerController.java
+
+	|---com.ihub.www.service
+		|
+		|---CustomerService.java
+	
+	|---com.ihub.www.repo
+		|
+		|----CustomerRepository.java(Interface)
+
+	|---com.ihub.www.model	
+		|
+		|----Customer.java
+
+	
+|	|---com.ihub.www.exception
+|		|
+|		|---ErrorDetails.java(POJO)
+|		|---ResourceNotFoundException.java 
+|		|---GlobalExceptionHandler.java
+
+|-----src/main/resources
+|		|
+		|---application.properties
+|
+|----pom.xml
+
+
+step1:
+------
+	Use the existing project i.e customer-service.
+
+step2:
+------
+	Create a com.ihub.www.exception package inside "src/main/java".
+	
+step3:
+------
+	Create ErrorDetails.java file inside "com.ihub.www.exception" pkg.
+
+ErrorDetails.java
+----------------
+package com.ihub.www.exception;
+
+import java.util.Date;
+
+public class ErrorDetails 
+{
+	private Date timestamp;
+	private String message;
+	private String details;
+	
+	
+	public ErrorDetails(Date timestamp, String message, String details) {
+		super();
+		this.timestamp = timestamp;
+		this.message = message;
+		this.details = details;
+	}
+	
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getDetails() {
+		return details;
+	}
+	public void setDetails(String details) {
+		this.details = details;
+	}
+}
+
+
+step4:
+-----
+	Create ResourceNotFoundException.java file inside "com.ihub.www.exception" pkg.
+
+ResourceNotFoundException.java
+-----------------------------
+package com.ihub.www.exception;
+
+public class ResourceNotFoundException extends RuntimeException
+{
+	public ResourceNotFoundException(String msg)
+	{
+		super(msg);
+	}
+}
+
+
+step5:
+------
+	Create a GlobalExceptionHandler.java file inside 
+	"com.ihub.www.exception" pkg.
+
+GlobalExceptionHandler.java
+---------------------------
+package com.ihub.www.exception;
+
+import java.util.Date;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+@ControllerAdvice
+public class GlobalExceptionHandler 
+{
+
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<?> handleResourceNotFoundException
+	(ResourceNotFoundException exception,WebRequest request )
+	{
+		ErrorDetails errorDetails=new ErrorDetails(new Date(),exception.getMessage(),request.getDescription(false));
+		return new ResponseEntity<>(errorDetails,HttpStatus.NOT_FOUND);
+	}
+	
+	//handle global exception
+		@ExceptionHandler(Exception.class)
+		public ResponseEntity<?> handleException
+		(Exception exception,WebRequest request )
+		{
+			ErrorDetails errorDetails=new ErrorDetails(new Date(),exception.getMessage(),request.getDescription(false));
+			return new ResponseEntity<>(errorDetails,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+}
+
+step6:
+-----
+	Now add ResourceNotFoundException to CustomerService.
+
+CustomerService.java
+--------------------
+package com.ihub.www.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ihub.www.exception.ResourceNotFoundException;
+import com.ihub.www.model.Customer;
+import com.ihub.www.repo.CustomerRepository;
+
+@Service
+public class CustomerService 
+{
+	@Autowired 
+	CustomerRepository customerRepository;
+	
+	public Customer addCustomer(Customer customer)
+	{
+		return customerRepository.save(customer);
+	}
+	public List<Customer> getAllCustomer()
+	{
+		return customerRepository.findAll();
+	}
+	
+	public Customer getCustomer(int custId)
+	{
+		return customerRepository.findById(custId)
+				.orElseThrow(()-> new ResourceNotFoundException("ID NOT FOUND"));
+		
+	}
+	
+	public String updateCustomer(Customer customer)
+	{
+		Customer cust=customerRepository.findById(customer.getCustId()).get();   
+		
+		cust.setCustName(customer.getCustName());
+		cust.setCustAdd(customer.getCustAdd());
+		
+		customerRepository.save(cust);
+		
+		return "Record updated";
+	}
+	
+	public String deleteCustomer(int custId)
+	{
+		Customer customer=customerRepository.findById(custId)
+		.orElseThrow(()->new ResourceNotFoundException("Id Not Found for Delete"));
+		
+		customerRepository.delete(customer);
+
+		return "Record is deleted";
+	}
+}
+
+step7:
+----
+	Relaunch the spring boot application.
+
+step8:
+-----
+	Test the application by using below request url.
+	ex:
+		http://localhost:9090/fetch/102
+
+
+step9:
+-------
+	Here exception will display in below format.
+	ex:
+	{
+    			"timestamp": "2023-03-27T23:04:03.181+00:00",
+    			"message": "ID NOT FOUND",
+    			"details": "uri=/fetch/102"
+	}
+
+
+Types of API's
+===============
+PIs are broadly accepted and used in web applications. 
+
+There are four different types of APIs commonly used in web services.
+ 
+1) public API 
+-----------
+A public API is open and available for use by any outside developer or business. 
+
+
+2) partner API
+---------------
+A partner API, only available to specifically selected and authorized outside developers or API consumers, is a means to facilitate business-to-business activities.
+
+3) private API / Internal APIs
+---------------------------------
+An internal or private API is intended only for use within the enterprise to connect systems and data within the business.
+
+4) composite API 
+-----------------
+omposite APIs generally combine two or more APIs to craft a sequence of related or interdependent operations. 

@@ -1,0 +1,128 @@
+
+
+SQL Operators:
+
+1.Unary and Binary Operators
+=============================
+
+ unary:A unary operator operates on only one operand. 
+------
+A unary operator typically appears with its operand.  
+
+ syntax: operator operand 
+
+example:
+1.SELECT +3 FROM DUAL;
+
+2.SELECT * FROM orders
+ WHERE qtysold = -1;
+SELECT * FROM emp
+  WHERE -sal < 0;
+
+
+
+binary:A binary operator operates on two operands. 
+------
+A binary operator appears with its operands. 
+
+ syntax: operand1 operator operand2  
+
+example:
+1.SELECT SAL * 5 FROM EMP;
+
+2.UPDATE emp
+  SET sal = sal * 1.1
+
+Multiplies, divides. These are binary operators. 
+
+
+2. Concatenation Operator:
+============================
+
+Concatenates character strings.  
+
+example:
+--------
+
+1.SELECT 'Name is ' || ename
+   FROM emp;
+  
+'||' is a concat operator:
+
+2.SELECT CONCAT (CONCAT (ENAME, ' is a '),job) FROM EMP WHERE SAL > 2000;
+This returns the following output.
+
+CONCAT(CONCAT(ENAME
+-------------------------
+KING       is a PRESIDENT
+BLAKE      is a MANAGER
+CLARK      is a MANAGER
+JONES      is a MANAGER
+FORD       is a ANALYST
+SCOTT      is a ANALYST
+
+6 rows selected.
+
+
+Set Operators
+==============
+Set operators combine sets of rows returned by queries, instead of individual data items.
+All set operators have equal precedence. Oracle Database Lite supports the following set operators.
+
+UNION:(Returns all distinct rows selected by either query)
+------
+eg: SELECT * FROM(SELECT ENAME FROM EMP WHERE JOB = 'CLERK' UNION SELECT ENAME FROM EMP WHERE JOB = 'ANALYST');
+
+UNION ALL:(Returns all rows selected by either query, including all duplicates)
+---------
+eg: SELECT * FROM
+
+(SELECT SAL FROM EMP WHERE JOB = 'CLERK' UNION ALL SELECT SAL FROM EMP WHERE JOB = 'ANALYST');
+
+INTERSECT:(Returns all distinct rows selected by both queries)
+---------
+eg:SELECT * FROM orders_list1 INTERSECT SELECT * FROM orders_list2;
+
+MINUS:(Returns all distinct rows selected by the first query but not the second)
+------
+ex: SELECT * FROM (SELECT SAL FROM EMP WHERE JOB = 'PRESIDENT' MINUS SELECT SAL FROM EMP WHERE JOB = 'MANAGER');
+
+Logical Operators:
+=================
+
+NOT:  ex: 1.SELECT * FROM EMP WHERE NOT (job IS NULL);
+          2.SELECT * FROM EMP WHERE NOT (sal BETWEEN 1000 AND 2000);
+
+
+AND:  ex:SELECT * FROM EMP WHERE job='CLERK' AND deptno=10;
+ 
+OR:   ex:SELECT * FROM emp WHERE job='CLERK' OR deptno=10;
+
+COMPARISION OPERATORS: >, <, =, !=, <=, >=, IN, ANY/SOME, NOT IN, ALL, BETWEEN, NOT BETWEEN X AND Y, EXISTS,
+=====================
+NULL/NOT NULL.
+
+
+EXAMPLES:
+
+SELECT ENAME "Employee" FROM EMP WHERE SAL = 1500;
+SELECT ENAME FROM EMP WHERE SAL ^= 5000;
+SELECT ENAME "Employee", JOB "Title" FROM EMP WHERE SAL > 3000;
+SELECT * FROM PRICE WHERE MINPRICE < 30;
+SELECT * FROM PRICE WHERE MINPRICE >= 20;
+SELECT ENAME FROM EMP WHERE SAL <= 1500;
+SELECT * FROM EMP WHERE ENAME IN ('SMITH', 'WARD');
+SELECT * FROM DEPT WHERE LOC = SOME ('NEW YORK','DALLAS');
+SELECT * FROM DEPT WHERE LOC NOT IN ('NEW YORK', 'DALLAS');
+SELECT * FROM emp WHERE sal >= ALL (1400, 3000);
+SELECT ENAME, JOB FROM EMP WHERE SAL BETWEEN 3000 AND 5000;
+SELECT * FROM EMP WHERE EXISTS (SELECT ENAME FROM EMP WHERE MGR IS NULL);
+SELECT * FROM EMP WHERE ENAME LIKE '%E%';
+SELECT * FROM EMP WHERE COMM IS NOT NULL AND SAL > 1500;
+
+
+
+
+
+
+
